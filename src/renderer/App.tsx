@@ -1,5 +1,6 @@
 import './styles/App.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import './styles/bootstrap.min.css';
+import './styles/fontawesome/css/all.min.css';
 import { Router, Routes, Route } from 'react-router-dom';
 import { Container, Row, Col } from 'react-bootstrap';
 import SidePanel from './components/SidePanel';
@@ -47,7 +48,7 @@ export default function App() {
     <Router location={''}>
       <Container fluid className="mainContainer">
         <Row>
-          <Col xs={3}>
+          <Col xs={3} style={{"padding": "0"}}>
             <SidePanel />
           </Col>
           <Col xs={9}>

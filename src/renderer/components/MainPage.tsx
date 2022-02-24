@@ -1,6 +1,7 @@
 /* eslint-disable prettier/prettier */
 
 import { Button, Col, Row } from "react-bootstrap";
+import TitlePanel from "./TitlePanel";
 
 
 
@@ -10,9 +11,7 @@ export default function MainPage() {
 
     return(
       <>
-        <Row className="titlePanel">
-            Upper Panel
-        </Row>
+        <TitlePanel />
         <Row className="mainContent">
           <Row className="mt-3">
             <Col>

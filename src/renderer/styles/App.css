@@ -6,12 +6,12 @@ body {
   position: relative;
   height: 100vh;
   width: 100vw;
-  background: linear-gradient(
+  /* background: linear-gradient(
     200.96deg,
     #fedc2a -29.09%,
     #dd5789 51.77%,
     #7a2c9e 129.35%
-  );
+  ); */
   font-family: sans-serif;
   overflow-y: hidden;
   display: flex;
@@ -23,8 +23,11 @@ body {
 
 .Sidepanel {
   color: #ffffff;
-  background-color: #051e34;
   height: 100vh;
+}
+
+.SidepanelTitle {
+  height: fit-content;
 }
 
 .titlePanel {
@@ -34,7 +37,7 @@ body {
 
 .mainContent {
   height: 80vh;
-  background-color: #eceff1;
+  /* background-color: #eceff1; */
 }
 
 /*
