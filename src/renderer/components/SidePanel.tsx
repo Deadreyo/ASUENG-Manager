@@ -23,6 +23,10 @@ const optionsPart: React.CSSProperties = {
   "marginTop": "-15px"
 }
 
+const optionsSubtitles: React.CSSProperties = {
+  fontSize: "larger"
+}
+
 
 export default function SidePanel() {
 
@@ -39,7 +43,11 @@ export default function SidePanel() {
     </Col>
     <Col style={optionsPart}>
       <hr />
-
+      <h5 className="ps-4 mb-4">Main Options</h5>
+      <h6 className="ps-5 mb-4" style={optionsSubtitles}><i className="fa fa-home pe-2" aria-hidden="true"></i> Option 1</h6>
+      <h6 className="ps-5 mb-4" style={optionsSubtitles}><i className="fa fa-home pe-2" aria-hidden="true"></i> Option 1</h6>
+      <h6 className="ps-5 mb-4" style={optionsSubtitles}><i className="fa fa-home pe-2" aria-hidden="true"></i> Option 1</h6>
+      <h6 className="ps-5 mb-4" style={optionsSubtitles}><i className="fa fa-home pe-2" aria-hidden="true"></i> Option 1</h6>
     </Col>
     </div>
   )

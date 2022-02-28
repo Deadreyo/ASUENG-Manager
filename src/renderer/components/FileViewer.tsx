@@ -1,4 +1,4 @@
-import { Row } from "react-bootstrap"
+import React from "react"
 import ReactJson from "react-json-view"
 
 const jsonTest = {
@@ -27,8 +27,14 @@ const jsonTest = {
   }
 }
 
+const styles: React.CSSProperties = {
+  height: "100%",
+  overflowY: "auto",
+  maxHeight: "60vh",
+}
+
 export default function FileViewer() {
   return(
-    <ReactJson src={jsonTest} theme={"ocean"} displayDataTypes={false} />
+    <ReactJson src={jsonTest} theme={"ocean"} displayDataTypes={false} style={styles}/>
   )
 }
