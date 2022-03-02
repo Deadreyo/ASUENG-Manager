@@ -1,31 +1,6 @@
-import React from "react"
+import React, { useContext } from "react"
 import ReactJson from "react-json-view"
-
-const jsonTest = {
-  "glossary": {
-    "title": "example glossary",
-    "comprehensive": true,
-    "link": undefined,
-    "count": 1,
-    "GlossDiv": {
-        "title": "S",
-        "GlossList": {
-            "GlossEntry": {
-                "ID": "SGML",
-                "SortAs": "SGML",
-                "GlossTerm": "Standard Generalized Markup Language",
-                "Acronym": "SGML",
-                "Abbrev": "ISO 8879:1986",
-                "GlossDef": {
-                    "para": "A meta-markup language, used to create markup languages such as DocBook.",
-                    "GlossSeeAlso": ["GML", "XML"]
-                },
-                "GlossSee": "markup"
-            }
-        }
-    }
-  }
-}
+import { projectContext } from "renderer/App"
 
 const styles: React.CSSProperties = {
   height: "100%",
@@ -33,8 +8,12 @@ const styles: React.CSSProperties = {
   maxHeight: "60vh",
 }
 
+
 export default function FileViewer() {
+
+  const {project, setProject} = useContext(projectContext)
+
   return(
-    <ReactJson src={jsonTest} theme={"ocean"} displayDataTypes={false} style={styles}/>
+    <ReactJson src={project} theme={"ocean"} displayDataTypes={false} style={styles} name="project" collapsed={1}/>
   )
 }

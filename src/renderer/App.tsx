@@ -4,7 +4,9 @@ import './styles/fontawesome/css/all.min.css';
 import { Router, Routes, Route } from 'react-router-dom';
 import { Container, Row, Col } from 'react-bootstrap';
 import SidePanel from './components/SidePanel';
-import MainPage from './components/MainPage';
+import MainPage from './components/Workspace';
+import React, { createContext, useState } from 'react';
+import jsonTest from './components/jsonTest.json';
 
 // const Hello = () => {
 //   return (
@@ -42,22 +44,27 @@ import MainPage from './components/MainPage';
 //     </div>
 //   );
 // };
+export const projectContext = createContext({ project: jsonTest, setProject: (obj) => {}})
 
 export default function App() {
+  const [project, setProject] =  useState(jsonTest)
+
   return (
-    <Router location={''}>
-      <Container fluid className="mainContainer">
-        <Row>
-          <Col xs={3} style={{"padding": "0"}}>
-            <SidePanel />
-          </Col>
-          <Col xs={9}>
-            <Routes>
-              <Route path="/" element={<MainPage />} />
-            </Routes>
-          </Col>
-        </Row>
-      </Container>
-    </Router>
+    <projectContext.Provider value={{ project, setProject}}>
+      <Router location={''}>
+        <Container fluid className="mainContainer">
+          <Row>
+            <Col xs={3} style={{"padding": "0"}}>
+              <SidePanel />
+            </Col>
+            <Col xs={9}>
+              <Routes>
+                <Route path="/" element={<MainPage />} />
+              </Routes>
+            </Col>
+          </Row>
+        </Container>
+      </Router>
+    </projectContext.Provider>
   );
 }

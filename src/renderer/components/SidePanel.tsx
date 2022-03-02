@@ -1,5 +1,8 @@
-import React from 'react';
-import { Col, Row } from 'react-bootstrap';
+import { ipcRenderer } from 'electron';
+import { readFileSync } from 'fs';
+import React, { useContext } from 'react';
+import { Anchor, Col, Row } from 'react-bootstrap';
+import { projectContext } from 'renderer/App';
 
 const sidePanel: React.CSSProperties = {
   "color": "#ffffff",
@@ -19,8 +22,8 @@ const subtitleColor: React.CSSProperties = {
 
 const optionsPart: React.CSSProperties = {
   "backgroundColor": "#18202C",
-  "height": "80%",
-  "marginTop": "-15px"
+  "height": "inherit",
+  "marginTop": "-15px",
 }
 
 const optionsSubtitles: React.CSSProperties = {
@@ -29,6 +32,16 @@ const optionsSubtitles: React.CSSProperties = {
 
 
 export default function SidePanel() {
+  
+  const {project, setProject} = useContext(projectContext)
+
+  const CreateFromJson = () => {
+
+    ipcRenderer.invoke("showDialog")
+    .then( (filePath) => {
+      setProject(JSON.parse(readFileSync(filePath).toString()))
+    })
+  }
 
   return(
     <div style={sidePanel}>
@@ -43,8 +56,12 @@ export default function SidePanel() {
     </Col>
     <Col style={optionsPart}>
       <hr />
-      <h5 className="ps-4 mb-4">Main Options</h5>
-      <h6 className="ps-5 mb-4" style={optionsSubtitles}><i className="fa fa-home pe-2" aria-hidden="true"></i> Option 1</h6>
+      <h5 className="ps-4 mb-4">Project Menu</h5>
+      <Anchor role="" color="primary" onClick={() => CreateFromJson()}>
+
+        <h6 className="ps-5 mb-4" style={optionsSubtitles}><i className="fa fa-home pe-2" aria-hidden="true"></i> Open a Project</h6>
+      </Anchor>
+
       <h6 className="ps-5 mb-4" style={optionsSubtitles}><i className="fa fa-home pe-2" aria-hidden="true"></i> Option 1</h6>
       <h6 className="ps-5 mb-4" style={optionsSubtitles}><i className="fa fa-home pe-2" aria-hidden="true"></i> Option 1</h6>
       <h6 className="ps-5 mb-4" style={optionsSubtitles}><i className="fa fa-home pe-2" aria-hidden="true"></i> Option 1</h6>

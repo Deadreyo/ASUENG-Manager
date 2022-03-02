@@ -139,10 +139,13 @@ app
   .catch(console.log);
 
 ipcMain.handle('showDialog', () => {
-  dialog.showOpenDialogSync({
+  let files = dialog.showOpenDialogSync({
     filters: [
       {name: "JSON", extensions: ["json"]}
     ],
     properties: ["openFile"]
   })
+  
+  if(files) return files[0]
+  else return null
 })
