@@ -12,8 +12,8 @@ const styles: React.CSSProperties = {
 export default function FileViewer() {
 
   const {project, setProject} = useContext(projectContext)
-
+  //ashes, brewer, bright
   return(
-    <ReactJson src={project} theme={"ocean"} displayDataTypes={false} style={styles} name="project" collapsed={1}/>
+    <ReactJson src={project} theme={"brewer"} displayDataTypes={false} style={styles} name="project" collapsed={1} quotesOnKeys={false} />
   )
 }
