@@ -138,14 +138,26 @@ app
   })
   .catch(console.log);
 
-ipcMain.handle('showDialog', () => {
+ipcMain.handle('openProject', () => {
   let files = dialog.showOpenDialogSync({
     filters: [
       {name: "JSON", extensions: ["json"]}
     ],
     properties: ["openFile"]
   })
-  
+
+  if(files) return files[0]
+  else return null
+})
+
+ipcMain.handle('openFolder', () => {
+  let files = dialog.showOpenDialogSync({
+    filters: [
+      {name: "JSON", extensions: ["json"]}
+    ],
+    properties: ["openDirectory"]
+  })
+
   if(files) return files[0]
   else return null
 })

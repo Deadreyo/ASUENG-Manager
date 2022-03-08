@@ -5,14 +5,15 @@ import { Anchor } from "react-bootstrap"
 import { projectContext } from "renderer/App"
 
 export default function OpenProjectOption({style} : {style : React.CSSProperties | undefined}) {
-  
+
     const {project, setProject} = useContext(projectContext)
-  
+
     const CreateFromJson = () => {
-  
-      ipcRenderer.invoke("showDialog")
+
+      ipcRenderer.invoke("openProject")
       .then( (filePath) => {
-        setProject(JSON.parse(readFileSync(filePath).toString()))
+        // setProject(JSON.parse(readFileSync(filePath).toString()))
+        // alert(filePath);
       })
     }
 

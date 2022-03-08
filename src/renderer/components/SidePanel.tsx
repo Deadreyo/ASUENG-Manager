@@ -5,6 +5,8 @@ import { Anchor, Col, Row } from 'react-bootstrap';
 import { projectContext } from 'renderer/App';
 import OpenFolderOption from './OpenFolderOption';
 import OpenProjectOption from './OpenProjectOption';
+import SaveASProjectOption from './SaveASProjectOption';
+import SaveProjectOption from './SaveProjectOption';
 
 const sidePanel: React.CSSProperties = {
   "color": "#ffffff",
@@ -51,7 +53,8 @@ export default function SidePanel() {
       <h5 className="ps-4 mb-4">Project Menu</h5>
       <OpenProjectOption style={optionsSubtitles} />
       <OpenFolderOption style={optionsSubtitles} />
-      <h6 className="ps-5 mb-4" style={optionsSubtitles}><i className="fa fa-home pe-2" aria-hidden="true"></i> Option 1</h6>
+      <SaveProjectOption style={optionsSubtitles} />
+      <SaveASProjectOption style={optionsSubtitles} />
       <h6 className="ps-5 mb-4" style={optionsSubtitles}><i className="fa fa-home pe-2" aria-hidden="true"></i> Option 1</h6>
       <h6 className="ps-5 mb-4" style={optionsSubtitles}><i className="fa fa-home pe-2" aria-hidden="true"></i> Option 1</h6>
     </Col>
