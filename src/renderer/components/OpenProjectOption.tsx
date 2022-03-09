@@ -1,5 +1,5 @@
 import { ipcRenderer } from "electron"
-import { readFileSync } from "fs"
+import { readdirSync, readFileSync } from "fs"
 import React, { useContext } from "react"
 import { Anchor } from "react-bootstrap"
 import { projectContext } from "renderer/App"
@@ -12,8 +12,8 @@ export default function OpenProjectOption({style} : {style : React.CSSProperties
 
       ipcRenderer.invoke("openProject")
       .then( (filePath) => {
-        // setProject(JSON.parse(readFileSync(filePath).toString()))
-        // alert(filePath);
+        if(!filePath) return;
+        setProject(JSON.parse(readFileSync(filePath).toString()))
       })
     }
 

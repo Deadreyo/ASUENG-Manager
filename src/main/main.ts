@@ -159,5 +159,5 @@ ipcMain.handle('openFolder', () => {
   })
 
   if(files) return files[0]
-  else return null
+  else return undefined
 })
