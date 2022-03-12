@@ -1,11 +1,11 @@
-export interface ProjectObject {
+export default interface ProjectObject {
     name: string;
     //Links to Drive files. Used by the .pdf files
     link?: string;
     //Links to the source Drives. Used by the top-level folders
     source?: string[];
     //The folders & files inside the current directory.
-    children?: ProjectObject[]
+    children?: ProjectObject | ProjectObject[]
     //Used by folders & files. Categorizes the items in a page.
     date?: string;
     //Display notes on pages. Is categorized by date.
