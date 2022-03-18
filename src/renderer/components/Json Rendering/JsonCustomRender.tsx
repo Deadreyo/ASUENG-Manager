@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 import ProjectObject from "renderer/utilities/ProjectObjectInterface"
+import JsonSection from "./JsonSection"
 
 const containerStyle: React.CSSProperties = {
   backgroundColor: "#0c0d0e",
@@ -18,36 +19,35 @@ const innerContainersStyle: React.CSSProperties = {
 
 export default function JsonCustomRender({src}: {src: ProjectObject}) {
 
-    const convert = (object: ProjectObject) =>{
-      // console.log(object.children)
-      const [display, setDisplay] = useState("initial");
-      let childrenElements = object.children? Array.isArray(object.children)?
-        <div style={{...innerContainersStyle, display: display}}>
+  // const convert = (object: ProjectObject) =>{
+  //   // console.log(object.children)
+  //   // const [display, setDisplay] = useState("initial");
+  //   let childrenElements = object.children? Array.isArray(object.children)?
+  //     <div style={{...innerContainersStyle, display: "initial"}}>
 
-            {object.children.map( (obj, ind) => (
-            convert(obj)
-            ))}
-        </div>
-       :
-      <div key={0} style={{...innerContainersStyle, display: "none"}}>
-        {console.log("next:")}
-        {console.log(object.children)}
-        {convert(object.children)}
-      </div>
-       : null;
+  //         {object.children.map( (obj, ind) => (
+  //         convert(obj)
+  //         ))}
+  //     </div>
+  //    :
+  //   <div key={0} style={{...innerContainersStyle, display: "initial"}}>
+  //     {console.log("next:")}
+  //     {console.log(object.children)}
+  //     {convert(object.children)}
+  //   </div>
+  //    : null;
 
-      const hideChildren = (child) => {
-        setDisplay("nonezh")
-      }
+  //   const hideChildren = (child) => {
+  //     // setDisplay("nonezh")
+  //   }
 
-      return (
-        <div>
-          {object.children? <span><i className="fas fa-folder" onClick={() => hideChildren(childrenElements)}></i> name : {object.name}</span> : <span><i className="fa-solid fa-folder-open"></i> name : {object.name}</span>}
-          {childrenElements}
-        </div>
-      )
-    }
-
+  //   return (
+  //     <div>
+  //       {object.children? <span><i className="fas fa-folder" onClick={() => hideChildren(childrenElements)}></i> name : <span >{object.name}</span></span> : <span><i className="fa-solid fa-folder-open"></i> name : {object.name}</span>}
+  //       {childrenElements}
+  //     </div>
+  //   )
+  // }
     console.log(src)
 
     let elementArray = []
@@ -55,7 +55,8 @@ export default function JsonCustomRender({src}: {src: ProjectObject}) {
 
     return(
         <div style={containerStyle}>
-          {convert(src)}
+          {/* {convert(src)} */}
+          <JsonSection object={src} />
         </div>
     )
 }

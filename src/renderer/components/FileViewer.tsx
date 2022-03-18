@@ -2,7 +2,7 @@ import React, { useContext } from "react"
 import ReactJson from "react-json-view"
 import { projectContext } from "renderer/App"
 import ProjectObject from "renderer/utilities/ProjectObjectInterface"
-import JsonCustomRender from "./JsonCustomRender"
+import JsonCustomRender from "./Json Rendering/JsonCustomRender"
 
 const styles: React.CSSProperties = {
   height: "100%",
