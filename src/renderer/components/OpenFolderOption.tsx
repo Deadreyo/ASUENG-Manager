@@ -14,10 +14,10 @@ export default function OpenFolderOption({style} : {style : React.CSSProperties 
       ipcRenderer.invoke("openFolder")
       .then( (filePath) => {
         if(!filePath) return;
-        let project = FolderToObject(filePath)
-        alert(project)
+        let project = FolderToObject(filePath, "normal", true)
+        // alert(project)
         setProject(project)
-        alert(filePath);
+        // alert(filePath);
         // readdirSync(filePath).forEach( fileName => {
         //   console.log(fileName)
         // })

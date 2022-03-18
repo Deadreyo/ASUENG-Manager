@@ -1,24 +1,24 @@
 import { readdirSync, statSync, readFileSync, PathLike } from "fs"
 import path, { extname } from "path"
 
-export function FolderToObject(dir: string, mode: 'normal' | 'link' = 'normal') {
+export function FolderToObject(dir: string, mode: 'normal' | 'link' = 'normal', mainInstance?: boolean) {
     let totalObj: {}[] = []
     readdirSync(dir).forEach( fileName => {
-  
+
       // console.log(fileName)
       var filepath = path.join(dir, fileName)
       var isDir = statSync(filepath).isDirectory()
-  
-  
+
+
       var children = null
-  
+
       if(isDir) {
         var children: any = FolderToObject(filepath, mode)
       } else {
         //
       }
-  
-      
+
+
       let obj: any = {}
       let fixedName = fileName;
       if(mode === 'normal') {
@@ -36,7 +36,7 @@ export function FolderToObject(dir: string, mode: 'normal' | 'link' = 'normal') 
         }
         fixedName = fixedName.replace(/\s/g, "_")
       }
-  
+
       obj.name = fixedName
       if(extname(fileName) === '.txt') {
         if(fileName.slice(0, 4) === 'note') obj.note = readFileSync(filepath).toString()
@@ -45,14 +45,17 @@ export function FolderToObject(dir: string, mode: 'normal' | 'link' = 'normal') 
         if(mode === 'link') if(!isDir) obj.link = ""
         if(isDir) obj.children = children
       }
-  
+
       totalObj.push(obj)
     })
-  
-    // return totalObj
-    let returnedObject = {
-      name: path.basename(dir),
-      children: totalObj
+
+    if(mainInstance) {
+      let returnedObject = {
+        name: path.basename(dir),
+        children: totalObj
+      }
+      return returnedObject;
+    } else {
+      return totalObj
     }
-    return returnedObject;
   }
