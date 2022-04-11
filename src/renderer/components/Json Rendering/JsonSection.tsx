@@ -35,10 +35,10 @@ const NoteTextStyle: React.CSSProperties = {
 }
 
 const CreditsIconStyle: React.CSSProperties = {
-  color: "grey",
+  color: "rgb(49, 130, 189)",
 }
 const CreditsTextStyle: React.CSSProperties = {
-  color: "rgb(149, 150, 151)",
+  color: "rgb(49, 130, 189)",
   fontStyle: "italic",
 }
 
@@ -102,17 +102,17 @@ export default function JsonSection( {object} : {object: ProjectObject}) {
       <div>
         <span onClick={() => Clicking()}><i className={ClassName} style={styleUsed}></i> {initialWord} : <span style={FolderFileNameStyle}>{object.name}</span></span>
         <div style={{...innerContainersStyle, display: display}}>
-          
+
           {object.date? <div style={DateTextStyle}><i className="fa-solid fa-calendar" style={DateIconStyle}></i> date : <span>{object.date}</span></div>
             : null}
-          {object.note? <div style={NoteTextStyle}><i className="fas fa-comment-dots" style={NoteIconStyle}></i> note : <span>{object.note}</span></div>
+          {object.note? object.note.map( note => <div style={NoteTextStyle}><i className="fas fa-comment-dots" style={NoteIconStyle}></i> note {note.date? <span style={DateIconStyle}><i className="fa-solid fa-calendar" style={Object.assign({}, NoteTextStyle, DateIconStyle)}></i>{" "+note.date}</span> : null} : <span>{note.message}</span></div>)
             : null}
           {object.source? object.source.map( (str) => ( <div style={SourceTextStyle}><i className="fas fa-link" style={SourceIconStyle}></i> source : <span>{str}</span> </div> ))
             : null}
           {object.link? <div style={LinkTextStyle}><i className="fas fa-link" style={LinkIconStyle}></i> link : <span>{object.link}</span></div>
             : null}
-          {/* {object.credits? object.credits.map( (str) => ( <div style={CreditsTextStyle}><i className="fas fa-thumbs-up" style={CreditsIconStyle}></i> credits : <span>{object.credits}</span></div>))
-            : null} */}
+          {object.credits? object.credits.map( (str) => ( <div style={CreditsTextStyle}><i className="fas fa-thumbs-up" style={CreditsIconStyle}></i> credits : <span>{str}</span></div>))
+            : null}
           {
           childrenElements
           }
