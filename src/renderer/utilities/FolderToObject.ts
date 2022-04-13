@@ -4,6 +4,25 @@ import ProjectObject from "./ProjectObjectInterface"
 
 export function FolderToObject(dir: string, mode: 'normal' | 'link' = 'normal', mainInstance?: boolean): ProjectObject | ProjectObject[] {
     let totalObj: ProjectObject[] = []
+
+    const notesCreditsTransfer = (obj: ProjectObject, children: ProjectObject[]) => {
+      children.filter( child => child.note !== undefined).forEach(child => {
+        if(!obj.note) obj.note = [];
+        if(child.note && !child.children) {
+          obj.note.push(...child.note);
+          (children as ProjectObject[]).splice((children as ProjectObject[]).indexOf(child), 1)
+        }
+      })
+
+      children.filter( child => child.credits !== undefined).forEach(child => {
+        if(!obj.credits) obj.credits = [];
+        if(child.credits && !child.children) {
+          obj.credits.push(...child.credits);
+          (children as ProjectObject[]).splice((children as ProjectObject[]).indexOf(child), 1)
+        }
+      })
+    }
+
     readdirSync(dir).forEach( fileName => {
 
       // console.log(fileName)
@@ -46,19 +65,7 @@ export function FolderToObject(dir: string, mode: 'normal' | 'link' = 'normal', 
         if(mode === 'link') if(!isDir) obj.link = ""
 
         if(isDir) {
-          if(children && Array.isArray(children)) {
-            children.filter( child => child.note !== undefined).forEach(child => {
-              if(!obj.note) obj.note = [];
-              if(child.note) obj.note.push(...child.note);
-              (children as ProjectObject[]).splice((children as ProjectObject[]).indexOf(child), 1)
-            })
-
-            children.filter( child => child.credits !== undefined).forEach(child => {
-              if(!obj.credits) obj.credits = [];
-              if(child.credits) obj.credits.push(...child.credits);
-              (children as ProjectObject[]).splice((children as ProjectObject[]).indexOf(child), 1)
-            })
-          }
+          if(children && Array.isArray(children)) notesCreditsTransfer(obj, children);
           obj.children = children
         }
 
@@ -72,6 +79,8 @@ export function FolderToObject(dir: string, mode: 'normal' | 'link' = 'normal', 
         name: path.basename(dir),
         children: totalObj
       }
+      if(returnedObject.children && Array.isArray(returnedObject.children))
+        {notesCreditsTransfer(returnedObject, returnedObject.children);}
       return returnedObject;
     } else {
       return totalObj

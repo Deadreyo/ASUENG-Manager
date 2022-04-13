@@ -14,6 +14,7 @@ import { autoUpdater } from 'electron-updater';
 import log from 'electron-log';
 import MenuBuilder from './menu';
 import { resolveHtmlPath } from './util';
+import ProjectObject from 'renderer/utilities/ProjectObjectInterface';
 
 export default class AppUpdater {
   constructor() {
@@ -160,4 +161,14 @@ ipcMain.handle('openFolder', () => {
 
   if(files) return files[0]
   else return undefined
+})
+
+ipcMain.handle("saveAs", async () => {
+  let result = await dialog.showSaveDialog({
+    filters: [
+      {name: "JSON", extensions: ["json"]}
+    ],
+    properties: ["createDirectory", "showOverwriteConfirmation"]
+  })
+  return result.filePath;
 })

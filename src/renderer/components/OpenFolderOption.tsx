@@ -15,12 +15,7 @@ export default function OpenFolderOption({style} : {style : React.CSSProperties 
       .then( (filePath) => {
         if(!filePath) return;
         let project = FolderToObject(filePath, "normal", true)
-        // alert(project)
         setProject(project)
-        // alert(filePath);
-        // readdirSync(filePath).forEach( fileName => {
-        //   console.log(fileName)
-        // })
       })
     }
 
