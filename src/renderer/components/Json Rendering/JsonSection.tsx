@@ -1,5 +1,6 @@
-import { useState } from "react";
-import ProjectObject from "renderer/utilities/ProjectObjectInterface";
+import { useContext, useState } from "react";
+import ProjectObject from "renderer/@types/ProjectObjectInterface";
+import { selectedObjectContext } from "../Workspace";
 
 const innerContainersStyle: React.CSSProperties = {
   paddingLeft: "30px",
@@ -63,6 +64,7 @@ export default function JsonSection( {object} : {object: ProjectObject}) {
 
     const [display, setDisplay] = object.children? useState("inherit") : useState("none");
     const [icon, setIcon] = useState("fa-folder-open");
+    const {selected, setSelected} = useContext(selectedObjectContext)
 
     let childrenElements: JSX.Element | JSX.Element[] | null = null;
 
@@ -86,13 +88,19 @@ export default function JsonSection( {object} : {object: ProjectObject}) {
 
     }
 
-    const Clicking = () => {
+    const expandObject = () => {
       // setDisplay("none")
       if(display == "inherit") setDisplay("none");
       else setDisplay("inherit");
 
       if(icon == "fa-folder") setIcon("fa-folder-open");
       else setIcon("fa-folder");
+
+    }
+
+    const selectObject = () => {
+      if(object !== selected) setSelected(object)
+      else setSelected(undefined)
     }
 
     let ClassName = object.children? `fas ${icon}` : "fa-solid fa-file";
@@ -100,7 +108,7 @@ export default function JsonSection( {object} : {object: ProjectObject}) {
     let initialWord = object.children? `Folder` : "File";
     return (
       <div>
-        <span onClick={() => Clicking()}><i className={ClassName} style={styleUsed}></i> {initialWord} : <span style={FolderFileNameStyle}>{object.name}</span></span>
+        <span style={object == selected? {outline: "3px dashed red", outlineOffset: "2px"} : {}}><span onClick={() => expandObject()}><i className={ClassName} style={styleUsed}></i> {initialWord}</span> : <span style={FolderFileNameStyle} onClick={() => selectObject()}>{object.name}</span></span>
         <div style={{...innerContainersStyle, display: display}}>
 
           {object.date? <div style={DateTextStyle}><i className="fa-solid fa-calendar" style={DateIconStyle}></i> date : <span>{object.date}</span></div>

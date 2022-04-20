@@ -1,7 +1,7 @@
 import React, { useContext } from "react"
 import ReactJson from "react-json-view"
 import { projectContext } from "renderer/App"
-import ProjectObject from "renderer/utilities/ProjectObjectInterface"
+import ProjectObject from "renderer/@types/ProjectObjectInterface"
 import JsonCustomRender from "./Json Rendering/JsonCustomRender"
 
 const styles: React.CSSProperties = {
@@ -9,7 +9,6 @@ const styles: React.CSSProperties = {
   overflowY: "auto",
   maxHeight: "60vh",
 }
-
 
 export default function FileViewer() {
 

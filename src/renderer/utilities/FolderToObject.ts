@@ -1,6 +1,6 @@
-import { readdirSync, statSync, readFileSync, PathLike } from "fs"
+import { readdirSync, statSync, readFileSync } from "fs"
 import path, { extname } from "path"
-import ProjectObject from "./ProjectObjectInterface"
+import ProjectObject from "../@types/ProjectObjectInterface"
 
 export function FolderToObject(dir: string, mode: 'normal' | 'link' = 'normal', mainInstance?: boolean): ProjectObject | ProjectObject[] {
     let totalObj: ProjectObject[] = []

@@ -1,6 +1,8 @@
 /* eslint-disable prettier/prettier */
-import React, {  } from "react";
+import React, { createContext } from "react";
 import { Button, Col, Row } from "react-bootstrap";
+import ProjectObject from "renderer/@types/ProjectObjectInterface";
+import jsonTest from './jsonTest.json'
 
 import FileViewer from "./FileViewer";
 import TitlePanel from "./TitlePanel";
@@ -11,12 +13,14 @@ const mainContent: React.CSSProperties = {
   overflowY: "auto",
 }
 
-
+export const selectedObjectContext = createContext({ selected: {}, setSelected: (obj) => {}})
 
 export default function MainPage() {
 
+  let [selected, setSelected] = React.useState<ProjectObject|undefined>(jsonTest)
+
   return(
-    <>
+    <selectedObjectContext.Provider value={{selected, setSelected}}>
       <TitlePanel />
       <Row style={mainContent}>
         <Row className="mt-3">
@@ -50,12 +54,12 @@ export default function MainPage() {
                 {/* </Row> */}
               </Col>
 
-          
+
             </Row>
           </Col>
         </Row>
 
       </Row>
-    </>
+    </selectedObjectContext.Provider>
   )
 }

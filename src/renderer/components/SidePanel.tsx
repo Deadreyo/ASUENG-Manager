@@ -1,12 +1,9 @@
-import { ipcRenderer } from 'electron';
-import { readFileSync } from 'fs';
-import React, { useContext } from 'react';
-import { Anchor, Col, Row } from 'react-bootstrap';
-import { projectContext } from 'renderer/App';
-import OpenFolderOption from './OpenFolderOption';
-import OpenProjectOption from './OpenProjectOption';
-import SaveASProjectOption from './SaveASProjectOption';
-import SaveProjectOption from './SaveProjectOption';
+import React from 'react';
+import { Col } from 'react-bootstrap';
+import OpenFolderOption from './SidePanelOptions/OpenFolderOption';
+import OpenProjectOption from './SidePanelOptions/OpenProjectOption';
+import SaveASProjectOption from './SidePanelOptions/SaveASProjectOption';
+import SaveProjectOption from './SidePanelOptions/SaveProjectOption';
 
 const sidePanel: React.CSSProperties = {
   "color": "#ffffff",
@@ -58,6 +55,8 @@ export default function SidePanel() {
       <h6 className="ps-5 mb-4" style={optionsSubtitles}><i className="fa fa-home pe-2" aria-hidden="true"></i> Import Links from Project</h6>
       <h6 className="ps-5 mb-4" style={optionsSubtitles}><i className="fa fa-home pe-2" aria-hidden="true"></i> Close Project</h6>
       <h6 className="ps-5 mb-4" style={optionsSubtitles}><i className="fa fa-home pe-2" aria-hidden="true"></i> New Project</h6>
+      <h6 className="ps-5 mb-4" style={optionsSubtitles}><i className="fa fa-home pe-2" aria-hidden="true"></i> Download Project to Folder</h6>
+      <h6 className="ps-5 mb-4" style={optionsSubtitles}><i className="fa fa-home pe-2" aria-hidden="true"></i> Option 1</h6>
       <h6 className="ps-5 mb-4" style={optionsSubtitles}><i className="fa fa-home pe-2" aria-hidden="true"></i> Option 1</h6>
     </Col>
     </div>

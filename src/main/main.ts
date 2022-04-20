@@ -14,7 +14,8 @@ import { autoUpdater } from 'electron-updater';
 import log from 'electron-log';
 import MenuBuilder from './menu';
 import { resolveHtmlPath } from './util';
-import ProjectObject from 'renderer/utilities/ProjectObjectInterface';
+import ProjectObject from 'renderer/@types/ProjectObjectInterface';
+import testFetch from './keys';
 
 export default class AppUpdater {
   constructor() {
