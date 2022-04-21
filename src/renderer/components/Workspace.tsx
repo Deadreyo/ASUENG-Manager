@@ -9,8 +9,12 @@ import TitlePanel from "./TitlePanel";
 // const fs = window.require('fs');
 
 const mainContent: React.CSSProperties = {
-  height: "auto",
+  maxHeight: "80vh",
   overflowY: "auto",
+}
+
+const selectedTitle: React.CSSProperties = {
+  overflow: "auto",
 }
 
 export const selectedObjectContext = createContext({ selected: {}, setSelected: (obj) => {}})
@@ -32,16 +36,21 @@ export default function MainPage() {
         </Row>
 
         <Row>
-          <Col xs={9}>
+          <Col xs={8} style={{borderRight: "1px solid #303030"}}>
             <FileViewer />
           </Col>
-          <Col xs={1} className="vr p-0" >
+          {/* <Col xs={1} className="vr p-0" > */}
             {/* <div className="vr m-0" style={{height: "100%"}}/> */}
-          </Col>
-          <Col xs={3} style={{width: "auto"}}>
+          {/* </Col> */}
+          <Col xs={4}>
             <Row>
-              <Col xs={9}>
+              <Col xs={12}>
                 {/* <Row> */}
+                  {selected &&
+                    <Col xs={12} style={selectedTitle}>
+                      <h5>{selected.name}</h5>
+                    </Col>
+                  }
                   <Col xs={12}>
                     <Button variant="primary" size="sm">Primary</Button>
                   </Col>

@@ -9,6 +9,7 @@ const containerStyle: React.CSSProperties = {
   height: "100%",
   overflowY: "auto",
   maxHeight: "60vh",
+  minHeight: "30vh",
 }
 
 const innerContainersStyle: React.CSSProperties = {

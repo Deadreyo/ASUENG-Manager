@@ -77,8 +77,8 @@ export default function JsonSection( {object} : {object: ProjectObject}) {
             else if(a.children && b.children) return 0;
             else return 1;
           })
-          .map( (obj) => (
-            <JsonSection object={obj} />
+          .map( (obj, i) => (
+            <JsonSection object={obj} key={i}/>
           ));
 
       } else {
@@ -113,13 +113,13 @@ export default function JsonSection( {object} : {object: ProjectObject}) {
 
           {object.date? <div style={DateTextStyle}><i className="fa-solid fa-calendar" style={DateIconStyle}></i> date : <span>{object.date}</span></div>
             : null}
-          {object.note? object.note.map( note => <div style={NoteTextStyle}><i className="fas fa-comment-dots" style={NoteIconStyle}></i> note {note.date? <span style={DateIconStyle}><i className="fa-solid fa-calendar" style={Object.assign({}, NoteTextStyle, DateIconStyle)}></i>{" "+note.date}</span> : null} : <span>{note.message}</span></div>)
+          {object.note? object.note.map( (note, i) => <div style={NoteTextStyle} key={i}><i className="fas fa-comment-dots" style={NoteIconStyle}></i> note {note.date? <span style={DateIconStyle}><i className="fa-solid fa-calendar" style={Object.assign({}, NoteTextStyle, DateIconStyle)}></i>{" "+note.date}</span> : null} : <span>{note.message}</span></div>)
             : null}
-          {object.source? object.source.map( (str) => ( <div style={SourceTextStyle}><i className="fas fa-link" style={SourceIconStyle}></i> source : <span>{str}</span> </div> ))
+          {object.source? object.source.map( (str, i) => ( <div style={SourceTextStyle} key={i}><i className="fas fa-link" style={SourceIconStyle}></i> source : <span>{str}</span> </div> ))
             : null}
           {object.link? <div style={LinkTextStyle}><i className="fas fa-link" style={LinkIconStyle}></i> link : <span>{object.link}</span></div>
             : null}
-          {object.credits? object.credits.map( (str) => ( <div style={CreditsTextStyle}><i className="fas fa-thumbs-up" style={CreditsIconStyle}></i> credits : <span>{str}</span></div>))
+          {object.credits? object.credits.map( (str, i) => ( <div style={CreditsTextStyle} key={i}><i className="fas fa-thumbs-up" style={CreditsIconStyle}></i> credits : <span>{str}</span></div>))
             : null}
           {
           childrenElements

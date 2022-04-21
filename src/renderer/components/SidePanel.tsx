@@ -1,5 +1,5 @@
 import React from 'react';
-import { Col } from 'react-bootstrap';
+import { Col, Row } from 'react-bootstrap';
 import OpenFolderOption from './SidePanelOptions/OpenFolderOption';
 import OpenProjectOption from './SidePanelOptions/OpenProjectOption';
 import SaveASProjectOption from './SidePanelOptions/SaveASProjectOption';
@@ -7,8 +7,9 @@ import SaveProjectOption from './SidePanelOptions/SaveProjectOption';
 
 const sidePanel: React.CSSProperties = {
   "color": "#ffffff",
-  "height": "100vh"
-
+  "height": "100vh",
+  "overflow": "auto",
+  "backgroundColor": "rgb(24, 32, 44)"
 }
 
 const titlePart: React.CSSProperties = {
@@ -22,9 +23,8 @@ const subtitleColor: React.CSSProperties = {
 }
 
 const optionsPart: React.CSSProperties = {
-  "backgroundColor": "#18202C",
-  "height": "inherit",
   "marginTop": "-15px",
+  "paddingRight": "5px"
 }
 
 const optionsSubtitles: React.CSSProperties = {
@@ -45,6 +45,7 @@ export default function SidePanel() {
         <h5 className="ps-4" style={subtitleColor}><i className="fa fa-home pe-2" aria-hidden="true"></i> Side Panel</h5>
       {/* </Row> */}
     </Col>
+
     <Col style={optionsPart}>
       <hr />
       <h5 className="ps-4 mb-4">Project Menu</h5>
@@ -59,6 +60,7 @@ export default function SidePanel() {
       <h6 className="ps-5 mb-4" style={optionsSubtitles}><i className="fa fa-home pe-2" aria-hidden="true"></i> Option 1</h6>
       <h6 className="ps-5 mb-4" style={optionsSubtitles}><i className="fa fa-home pe-2" aria-hidden="true"></i> Option 1</h6>
     </Col>
+
     </div>
   )
 }
