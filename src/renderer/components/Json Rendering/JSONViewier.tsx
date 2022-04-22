@@ -1,9 +1,9 @@
 import { useContext } from "react"
 import ReactJson from "react-json-view"
 import { projectContext } from "renderer/App"
-import JsonCustomRender from "./Json Rendering/JsonCustomRender"
+import JsonCustomRender from "./JsonCustomRender"
 
-export default function FileViewer() {
+export default function JSONViewer() {
 
   const {project} = useContext(projectContext)
   //ashes, brewer, bright

@@ -4,8 +4,14 @@ import { Button, Col, Row } from "react-bootstrap";
 import ProjectObject from "renderer/@types/ProjectObjectInterface";
 import jsonTest from './jsonTest.json'
 
-import FileViewer from "./FileViewer";
+import JSONViewer from "./JSON Rendering/JSONViewier";
 import TitlePanel from "./TitlePanel";
+import ChangeDateButton from "./JSON Interactions/ChangeDate";
+import ChangeLinkButton from "./JSON Interactions/ChangeLink";
+import RenameButton from "./JSON Interactions/Rename";
+import AddNoteButton from "./JSON Interactions/AddNote";
+import AddCreditButton from "./JSON Interactions/AddCredits";
+import AddSourceButton from "./JSON Interactions/AddSource";
 // const fs = window.require('fs');
 
 const mainContent: React.CSSProperties = {
@@ -15,6 +21,11 @@ const mainContent: React.CSSProperties = {
 
 const selectedTitle: React.CSSProperties = {
   overflow: "auto",
+  backgroundColor: "#0c0d0e",
+  padding: "2px 5px",
+  marginBottom: "5px",
+  border: "5px outset #f80",
+  borderRadius: "5px",
 }
 
 export const selectedObjectContext = createContext({ selected: {}, setSelected: (obj) => {}})
@@ -37,29 +48,26 @@ export default function MainPage() {
 
         <Row>
           <Col xs={8} style={{borderRight: "1px solid #303030"}}>
-            <FileViewer />
+            <JSONViewer />
           </Col>
           {/* <Col xs={1} className="vr p-0" > */}
             {/* <div className="vr m-0" style={{height: "100%"}}/> */}
           {/* </Col> */}
           <Col xs={4}>
-            <Row>
-              <Col xs={12}>
+            <Row style={{marginLeft: "1px"}}>
+              <Col xs={12} style={{backgroundColor: "#0c0d0e", paddingTop: "5px", paddingBottom: "5px"}} className="bg-light">
                 {/* <Row> */}
                   {selected &&
-                    <Col xs={12} style={selectedTitle}>
+                    <Col xs={12} style={selectedTitle} className="mb-2">
                       <h5>{selected.name}</h5>
                     </Col>
                   }
-                  <Col xs={12}>
-                    <Button variant="primary" size="sm">Primary</Button>
-                  </Col>
-                  <Col xs={12}>
-                    <Button variant="primary" size="sm">Primary</Button>
-                  </Col>
-                  <Col xs={12}>
-                    <Button variant="primary" size="sm">Primary</Button>
-                  </Col>
+                  <RenameButton />
+                  <ChangeDateButton />
+                  <ChangeLinkButton />
+                  <AddNoteButton />
+                  <AddCreditButton />
+                  <AddSourceButton />
                 {/* </Row> */}
               </Col>
 
