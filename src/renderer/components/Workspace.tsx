@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 import React, { createContext } from "react";
-import { Button, Col, Row } from "react-bootstrap";
+import { Col, Row } from "react-bootstrap";
 import ProjectObject from "renderer/@types/ProjectObjectInterface";
 import jsonTest from './jsonTest.json'
 
@@ -19,20 +19,18 @@ const mainContent: React.CSSProperties = {
   overflowY: "auto",
 }
 
-type selectionType = {obj: ProjectObject, forceUpdate: () => void} | undefined
+type selectionType = {obj: ProjectObject} | undefined
 type selectionContextType = { selected: selectionType, setSelected: (selection: selectionType) => void }
 
 export const selectedObjectContext = createContext<selectionContextType>(
   {
-    selected: {obj: jsonTest,
-    forceUpdate: () => {}
-    },
-    setSelected: (selection: selectionType) => {}
+    selected: {obj: jsonTest},
+    setSelected: () => {}
   }
 )
 export default function MainPage() {
 
-  let [selected, setSelected] = React.useState<selectionType>({obj: jsonTest, forceUpdate: () => {}})
+  let [selected, setSelected] = React.useState<selectionType>({obj: jsonTest})
 
   return(
     <selectedObjectContext.Provider value={{selected, setSelected}}>

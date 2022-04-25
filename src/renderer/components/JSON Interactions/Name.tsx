@@ -1,6 +1,4 @@
-import { FormEvent, useCallback, useContext, useState } from "react";
-import { Button, Col } from "react-bootstrap";
-import { projectContext } from "renderer/App";
+import { FormEvent, useContext } from "react";
 import { selectedObjectContext } from "../Workspace";
 
 const selectedTitle: React.CSSProperties = {
@@ -16,19 +14,12 @@ const selectedTitle: React.CSSProperties = {
 
 export default function ObjectName() {
   let {selected, setSelected} = useContext(selectedObjectContext);
-  // let {project, setProject} = useContext(projectContext)
-  const [, updateState] = useState({});
-
-  const forceUpdate = useCallback(() => updateState({}), []);
 
   const editName = (ev: FormEvent) => {
     if(selected) {
       selected.obj.name = (ev.target as HTMLInputElement).value;
-      forceUpdate();
-      selected.forceUpdate();
+      setSelected({obj: selected.obj})
     }
-    // setSelected(selected);
-    // setProject({...project})
   }
 
   return (

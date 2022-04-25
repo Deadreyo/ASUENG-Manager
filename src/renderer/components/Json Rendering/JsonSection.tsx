@@ -1,4 +1,4 @@
-import { useCallback, useContext, useState } from "react";
+import { useContext, useState } from "react";
 import ProjectObject from "renderer/@types/ProjectObjectInterface";
 import { selectedObjectContext } from "../Workspace";
 
@@ -88,9 +88,6 @@ export default function JsonSection( {object} : {object: ProjectObject}) {
 
     }
 
-    const [, updateState] = useState({});
-    const forceUpdate = useCallback(() => updateState({}), []);
-
     const expandObject = () => {
       // setDisplay("none")
       if(display == "inherit") setDisplay("none");
@@ -102,7 +99,7 @@ export default function JsonSection( {object} : {object: ProjectObject}) {
     }
 
     const selectObject = () => {
-      if(object !== selected?.obj) setSelected({obj: object, forceUpdate: forceUpdate});
+      if(object !== selected?.obj) setSelected({obj: object});
       else setSelected(undefined)
     }
 
