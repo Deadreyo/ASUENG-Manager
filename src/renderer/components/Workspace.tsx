@@ -8,7 +8,7 @@ import JSONViewer from "./JSON Rendering/JSONViewier";
 import TitlePanel from "./TitlePanel";
 import ChangeDateButton from "./JSON Interactions/ChangeDate";
 import ChangeLinkButton from "./JSON Interactions/ChangeLink";
-import RenameButton from "./JSON Interactions/Rename";
+import ObjectName from "./JSON Interactions/Name";
 import AddNoteButton from "./JSON Interactions/AddNote";
 import AddCreditButton from "./JSON Interactions/AddCredits";
 import AddSourceButton from "./JSON Interactions/AddSource";
@@ -19,16 +19,7 @@ const mainContent: React.CSSProperties = {
   overflowY: "auto",
 }
 
-const selectedTitle: React.CSSProperties = {
-  overflow: "auto",
-  backgroundColor: "#0c0d0e",
-  padding: "2px 5px",
-  marginBottom: "5px",
-  border: "5px outset #f80",
-  borderRadius: "5px",
-}
-
-export const selectedObjectContext = createContext({ selected: {}, setSelected: (obj) => {}})
+export const selectedObjectContext = createContext(undefined as unknown as { selected: ProjectObject, setSelected: (obj: ProjectObject) => {}})
 
 export default function MainPage() {
 
@@ -57,12 +48,14 @@ export default function MainPage() {
             <Row style={{marginLeft: "1px"}}>
               <Col xs={12} style={{backgroundColor: "#0c0d0e", paddingTop: "5px", paddingBottom: "5px"}} className="bg-light">
                 {/* <Row> */}
-                  {selected &&
-                    <Col xs={12} style={selectedTitle} className="mb-2">
-                      <h5>{selected.name}</h5>
-                    </Col>
-                  }
-                  <RenameButton />
+                  {/* {selected &&
+                    <Col xs={12} className="mb-2">
+                      {/* <h5>{selected.name}</h5> */}
+                      {/* <input type={"text"} style={selectedTitle} className="mb-2" value={selected.name}/> */}
+
+                    {/* </Col> */}
+
+                  <ObjectName />
                   <ChangeDateButton />
                   <ChangeLinkButton />
                   <AddNoteButton />
