@@ -19,11 +19,20 @@ const mainContent: React.CSSProperties = {
   overflowY: "auto",
 }
 
-export const selectedObjectContext = createContext(undefined as unknown as { selected: ProjectObject, setSelected: (obj: ProjectObject) => {}})
+type selectionType = {obj: ProjectObject, forceUpdate: () => void} | undefined
+type selectionContextType = { selected: selectionType, setSelected: (selection: selectionType) => void }
 
+export const selectedObjectContext = createContext<selectionContextType>(
+  {
+    selected: {obj: jsonTest,
+    forceUpdate: () => {}
+    },
+    setSelected: (selection: selectionType) => {}
+  }
+)
 export default function MainPage() {
 
-  let [selected, setSelected] = React.useState<ProjectObject|undefined>(jsonTest)
+  let [selected, setSelected] = React.useState<selectionType>({obj: jsonTest, forceUpdate: () => {}})
 
   return(
     <selectedObjectContext.Provider value={{selected, setSelected}}>

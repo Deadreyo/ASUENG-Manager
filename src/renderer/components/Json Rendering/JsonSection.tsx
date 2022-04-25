@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useCallback, useContext, useState } from "react";
 import ProjectObject from "renderer/@types/ProjectObjectInterface";
 import { selectedObjectContext } from "../Workspace";
 
@@ -88,6 +88,9 @@ export default function JsonSection( {object} : {object: ProjectObject}) {
 
     }
 
+    const [, updateState] = useState({});
+    const forceUpdate = useCallback(() => updateState({}), []);
+
     const expandObject = () => {
       // setDisplay("none")
       if(display == "inherit") setDisplay("none");
@@ -99,7 +102,7 @@ export default function JsonSection( {object} : {object: ProjectObject}) {
     }
 
     const selectObject = () => {
-      if(object !== selected) setSelected(object)
+      if(object !== selected?.obj) setSelected({obj: object, forceUpdate: forceUpdate});
       else setSelected(undefined)
     }
 
@@ -108,7 +111,7 @@ export default function JsonSection( {object} : {object: ProjectObject}) {
     let initialWord = object.children? `Folder` : "File";
     return (
       <div>
-        <span style={object == selected? {outline: "3px dashed red", outlineOffset: "2px"} : {}}><span onClick={() => expandObject()}><i className={ClassName} style={styleUsed}></i> {initialWord}</span> : <span style={FolderFileNameStyle} onClick={() => selectObject()}>{object.name}</span></span>
+        <span style={object == selected?.obj ? {outline: "3px dashed red", outlineOffset: "2px"} : {}}><span onClick={() => expandObject()}><i className={ClassName} style={styleUsed}></i> {initialWord}</span> : <span style={FolderFileNameStyle} onClick={() => selectObject()}>{object.name}</span></span>
         <div style={{...innerContainersStyle, display: display}}>
 
           {object.date? <div style={DateTextStyle}><i className="fa-solid fa-calendar" style={DateIconStyle}></i> date : <span>{object.date}</span></div>

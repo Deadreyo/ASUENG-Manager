@@ -1,4 +1,4 @@
-import { FormEvent, useContext, useState } from "react";
+import { FormEvent, useCallback, useContext, useState } from "react";
 import { Button, Col } from "react-bootstrap";
 import { projectContext } from "renderer/App";
 import { selectedObjectContext } from "../Workspace";
@@ -16,17 +16,26 @@ const selectedTitle: React.CSSProperties = {
 
 export default function ObjectName() {
   let {selected, setSelected} = useContext(selectedObjectContext);
-  let {project, setProject} = useContext(projectContext)
+  // let {project, setProject} = useContext(projectContext)
+  const [, updateState] = useState({});
+
+  const forceUpdate = useCallback(() => updateState({}), []);
 
   const editName = (ev: FormEvent) => {
-    setProject({...project})
+    if(selected) {
+      selected.obj.name = (ev.target as HTMLInputElement).value;
+      forceUpdate();
+      selected.forceUpdate();
+    }
+    // setSelected(selected);
+    // setProject({...project})
   }
 
   return (
     <>
       {selected &&
         // <input type={"text"} style={selectedTitle} className="mb-2" value={selected.name.replace(".pdf", "")} onChange={editName}/>
-        <input type={"text"} style={selectedTitle} className="mb-2" value={obj.name} onChange={editName}/>
+        <input type={"text"} style={selectedTitle} className="mb-2" value={selected.obj.name} onChange={editName}/>
       }
     </>
   )

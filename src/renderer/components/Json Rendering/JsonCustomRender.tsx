@@ -20,8 +20,6 @@ const innerContainersStyle: React.CSSProperties = {
 
 export default function JsonCustomRender({src}: {src: ProjectObject}) {
 
-    console.log(src)
-
     return(
         <div style={containerStyle}>
           <JsonSection object={src} />
