@@ -17,7 +17,10 @@ export default function ObjectName() {
 
   const editName = (ev: FormEvent) => {
     if(selected) {
-      selected.obj.name = (ev.target as HTMLInputElement).value;
+
+      if(selected.obj.children) selected.obj.name = (ev.target as HTMLInputElement).value;
+      else selected.obj.name = (ev.target as HTMLInputElement).value + ".pdf";
+      
       setSelected({obj: selected.obj})
     }
   }
@@ -26,7 +29,7 @@ export default function ObjectName() {
     <>
       {selected &&
         // <input type={"text"} style={selectedTitle} className="mb-2" value={selected.name.replace(".pdf", "")} onChange={editName}/>
-        <input type={"text"} style={selectedTitle} className="mb-2" value={selected.obj.name} onChange={editName}/>
+        <input type={"text"} style={selectedTitle} className="mb-2" value={selected.obj.name.replace(".pdf", "")} onChange={editName}/>
       }
     </>
   )
