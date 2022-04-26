@@ -19,9 +19,10 @@ export default function ObjectName() {
     if(selected) {
 
       let value = (ev.target as HTMLInputElement).value;
-      // validation
-      value = value.replace(/[^\w| |-]/g, "");
-      if(selected.obj.children) value = value.replace(/-/g, "");
+
+      // Validation
+      value = value.replace(/\/|\\|"|<|>|:|\?|\*|\|/g, "");
+      if(selected.obj.children) value = value.replace(/[^\w| ]/g, "");
 
 
       // add extension

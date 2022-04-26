@@ -14,9 +14,6 @@ const FolderIconStyle: React.CSSProperties = {
 const FileIconStyle: React.CSSProperties = {
   color: "#ef96a6"
 }
-const FolderFileNameStyle: React.CSSProperties = {
-  color: "rgb(230, 85, 13)"
-}
 //rgb(149, 150, 151) grey
 //rgb(49, 130, 189) blue
 const DateIconStyle: React.CSSProperties = {
@@ -62,6 +59,7 @@ const LinkTextStyle: React.CSSProperties = {
 
 export default function JsonSection( {object} : {object: ProjectObject}) {
 
+
     const [display, setDisplay] = object.children? useState("inherit") : useState("none");
     const [icon, setIcon] = useState("fa-folder-open");
     const {selected, setSelected} = useContext(selectedObjectContext)
@@ -88,6 +86,22 @@ export default function JsonSection( {object} : {object: ProjectObject}) {
 
     }
 
+    // Validation
+    let valid = true;
+    let objName = object.name.replace(".pdf", "")
+    let invalidChar = "";
+    let search = object.children? /[^\w| ]/g : /\/|\\|"|<|>|:|\?|\*|\|/g ;
+
+    let invalidCharPos = objName.search(search)
+    if(invalidCharPos != -1) {
+      valid = false;
+      invalidChar = objName[invalidCharPos];
+    }
+
+    const FolderFileNameStyle: React.CSSProperties = {
+      color: valid? "rgb(230, 85, 13)" : "red"
+    }
+
     const expandObject = () => {
       // setDisplay("none")
       if(display == "inherit") setDisplay("none");
@@ -108,7 +122,17 @@ export default function JsonSection( {object} : {object: ProjectObject}) {
     let initialWord = object.children? `Folder` : "File";
     return (
       <div>
-        <span style={object == selected?.obj ? {outline: "3px dashed red", outlineOffset: "2px"} : {}}><span onClick={() => expandObject()}><i className={ClassName} style={styleUsed}></i> {initialWord}</span> : <span style={FolderFileNameStyle} onClick={() => selectObject()}>{object.name}</span></span>
+        <span style={object == selected?.obj ? {outline: "3px dashed red", outlineOffset: "2px"} : {}}>
+          <span onClick={() => expandObject()}>
+            <i className={ClassName} style={styleUsed}></i> {initialWord}
+          </span>
+          :
+          <span style={FolderFileNameStyle} onClick={() => selectObject()}>
+          {invalidChar !== ""? <>{" "}<i className="fa-solid fa-triangle-exclamation" title={`( ${invalidChar} ) is not allowed.`}></i></> : null}
+            {" "+object.name}
+          </span>
+        </span>
+
         <div style={{...innerContainersStyle, display: display}}>
 
           {object.date? <div style={DateTextStyle}><i className="fa-solid fa-calendar" style={DateIconStyle}></i> date : <span>{object.date}</span></div>
