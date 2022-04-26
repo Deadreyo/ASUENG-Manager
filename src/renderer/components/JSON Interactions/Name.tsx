@@ -18,9 +18,16 @@ export default function ObjectName() {
   const editName = (ev: FormEvent) => {
     if(selected) {
 
-      if(selected.obj.children) selected.obj.name = (ev.target as HTMLInputElement).value;
-      else selected.obj.name = (ev.target as HTMLInputElement).value + ".pdf";
-      
+      let value = (ev.target as HTMLInputElement).value;
+      // validation
+      value = value.replace(/[^\w| |-]/g, "");
+      if(selected.obj.children) value = value.replace(/-/g, "");
+
+
+      // add extension
+      if(!selected.obj.children) value += ".pdf";
+
+      selected.obj.name = value;
       setSelected({obj: selected.obj})
     }
   }
