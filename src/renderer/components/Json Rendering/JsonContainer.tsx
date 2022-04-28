@@ -1,6 +1,6 @@
 import React from "react"
 import ProjectObject from "renderer/@types/ProjectObjectInterface"
-import JsonSection from "./JsonSection"
+import JsonElement from "./JsonElement"
 
 const containerStyle: React.CSSProperties = {
   backgroundColor: "#0c0d0e",
@@ -10,19 +10,14 @@ const containerStyle: React.CSSProperties = {
   overflowY: "auto",
   maxHeight: "60vh",
   minHeight: "30vh",
+  padding: "5px"
 }
 
-const innerContainersStyle: React.CSSProperties = {
-  paddingLeft: "20px",
-  borderLeft: "2px solid grey",
-
-}
-
-export default function JsonCustomRender({src}: {src: ProjectObject}) {
+export default function JsonContainer({src}: {src: ProjectObject}) {
 
     return(
         <div style={containerStyle}>
-          <JsonSection object={src} />
+          <JsonElement object={src} />
         </div>
     )
 }

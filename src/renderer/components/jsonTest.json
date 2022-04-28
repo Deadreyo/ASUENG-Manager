@@ -1,4 +1,14 @@
 {
     "name": "jsonTest",
-    "date": "20"
+    "date": "20",
+    "children": [
+        {
+            "name": "jsonTest1",
+            "date": "20"
+        },
+        {
+            "name": "jsonTest2",
+            "date": "20"
+        }
+    ]
   }

@@ -1,7 +1,7 @@
 import { useContext } from "react"
-import ReactJson from "react-json-view"
+// import ReactJson from "react-json-view"
 import { projectContext } from "renderer/App"
-import JsonCustomRender from "./JsonCustomRender"
+import JsonContainer from "./JsonContainer"
 
 export default function JSONViewer() {
 
@@ -9,6 +9,6 @@ export default function JSONViewer() {
   //ashes, brewer, bright
   return(
     // <ReactJson src={project} theme={"brewer"} displayDataTypes={false} style={styles} name="project" collapsed={1} quotesOnKeys={false} />
-    <JsonCustomRender src={project}/>
+    <JsonContainer src={project}/>
   )
 }

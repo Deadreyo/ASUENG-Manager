@@ -42,8 +42,3 @@ export default function ObjectName() {
     </>
   )
 }
-
-
-    // <Col xs={12} className="mb-2 d-grid">
-    //   <Button variant="primary" size="sm">Change Name</Button>
-    // </Col>

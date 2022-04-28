@@ -1,6 +1,8 @@
 import { useContext, useState } from "react";
 import ProjectObject from "renderer/@types/ProjectObjectInterface";
 import { selectedObjectContext } from "../Workspace";
+import JsonMapChildren from "./JsonMapChildren";
+import { NameValidation } from "./JsonValidation";
 
 const innerContainersStyle: React.CSSProperties = {
   paddingLeft: "30px",
@@ -57,58 +59,33 @@ const LinkTextStyle: React.CSSProperties = {
 }
 
 
-export default function JsonSection( {object} : {object: ProjectObject}) {
+export default function JsonElement( {object} : {object: ProjectObject}) {
 
 
-    const [display, setDisplay] = object.children? useState("inherit") : useState("none");
-    const [icon, setIcon] = useState("fa-folder-open");
+    const [display, setDisplay] = useState("none");
+    const [icon, setIcon] = useState(object.children? "fa-folder" : "fa-file");
     const {selected, setSelected} = useContext(selectedObjectContext)
 
-    let childrenElements: JSX.Element | JSX.Element[] | null = null;
-
-    if(object.children) {
-      // Folder things...
-      if(Array.isArray(object.children)) {
-        childrenElements = object.children
-          .sort((a, b) => {
-            if(a.children && !b.children) return -1;
-            else if(a.children && b.children) return 0;
-            else return 1;
-          })
-          .map( (obj, i) => (
-            <JsonSection object={obj} key={i}/>
-          ));
-
-      } else {
-        childrenElements = <JsonSection object= {object.children} />;
-      }
-    } else {
-
-    }
+    let childrenElements: JSX.Element | JSX.Element[] | null = JsonMapChildren(object.children);
 
     // Validation
-    let valid = true;
-    let objName = object.name.replace(".pdf", "")
-    let invalidChar = "";
-    let search = object.children? /[^\w| ]/g : /\/|\\|"|<|>|:|\?|\*|\|/g ;
-
-    let invalidCharPos = objName.search(search)
-    if(invalidCharPos != -1) {
-      valid = false;
-      invalidChar = objName[invalidCharPos];
-    }
+    const [validName, invalidChar] = NameValidation(object)
 
     const FolderFileNameStyle: React.CSSProperties = {
-      color: valid? "rgb(230, 85, 13)" : "red"
+      color: validName? "rgb(230, 85, 13)" : "red"
     }
 
     const expandObject = () => {
       // setDisplay("none")
-      if(display == "inherit") setDisplay("none");
-      else setDisplay("inherit");
-
-      if(icon == "fa-folder") setIcon("fa-folder-open");
-      else setIcon("fa-folder");
+      if(display == "inherit") {
+        setDisplay("none")
+        if(object.children) setIcon("fa-folder")
+        else setIcon("fa-file")
+      } else {
+        setDisplay("inherit");
+        if(object.children) setIcon("fa-folder-open")
+        else setIcon("fa-file-alt")
+      }
 
     }
 
@@ -117,14 +94,13 @@ export default function JsonSection( {object} : {object: ProjectObject}) {
       else setSelected(undefined)
     }
 
-    let ClassName = object.children? `fas ${icon}` : "fa-solid fa-file";
     let styleUsed = object.children? FolderIconStyle : FileIconStyle;
     let initialWord = object.children? `Folder` : "File";
     return (
       <div>
         <span style={object == selected?.obj ? {outline: "3px dashed red", outlineOffset: "2px"} : {}}>
           <span onClick={() => expandObject()}>
-            <i className={ClassName} style={styleUsed}></i> {initialWord}
+            <i className={`fas ${icon}`} style={styleUsed}></i> {initialWord}
           </span>
           :
           <span style={FolderFileNameStyle} onClick={() => selectObject()}>

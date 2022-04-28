@@ -4,7 +4,7 @@ export default function AddCreditButton() {
 
   return (
     <Col xs={12} className="mb-2 d-grid">
-      <Button variant="primary" size="sm">Add Credit</Button>
+      <Button variant="secondary" size="sm" disabled>Add Credit</Button>
     </Col>
   )
 }
