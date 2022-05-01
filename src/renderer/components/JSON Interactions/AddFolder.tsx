@@ -1,6 +1,7 @@
 import React, { ChangeEvent } from "react";
 import { Button, Col, Form, Row } from "react-bootstrap";
 import ProjectObject from "renderer/@types/ProjectObjectInterface";
+import ValidationRules from "../Validation/Rules";
 import { selectedObjectContext } from "../Workspace";
 import { JSONInteractionDropDownDiv } from "./Styling";
 
@@ -23,7 +24,10 @@ export default function AddFolderButton() {
   }
 
   const nameChange = (ev: ChangeEvent) => {
-    setName((ev.target as HTMLInputElement).value);
+    let val = (ev.target as HTMLInputElement).value
+    // Validation
+    val = val.replace(ValidationRules.NameFolderRule, "");
+    setName(val);
   }
 
   return (

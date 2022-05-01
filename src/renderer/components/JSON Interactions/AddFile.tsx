@@ -1,6 +1,7 @@
 import React, { ChangeEvent } from "react";
 import { Button, Col, Form, Row } from "react-bootstrap";
 import ProjectObject from "renderer/@types/ProjectObjectInterface";
+import ValidationRules from "../Validation/Rules";
 import { selectedObjectContext } from "../Workspace";
 import { JSONInteractionDropDownDiv } from "./Styling";
 
@@ -13,6 +14,8 @@ export default function AddFileButton() {
   const createFile = () => {
 
     if(selected && name != "") {
+
+      // Validation
       (selected.obj.children as ProjectObject[]).push({
         name: name+".pdf"
       })
@@ -22,7 +25,11 @@ export default function AddFileButton() {
   }
 
   const nameChange = (ev: ChangeEvent) => {
-    setName((ev.target as HTMLInputElement).value);
+    let val = (ev.target as HTMLInputElement).value
+    // Validation
+    console.log(ValidationRules.NameFileRule)
+    val = val.replace(ValidationRules.NameFileRule, "");
+    setName(val);
   }
 
   return (

@@ -1,5 +1,6 @@
 import React, { ChangeEvent } from "react";
 import { Button, Col, Form } from "react-bootstrap";
+import ValidationRules from "../Validation/Rules";
 import { selectedObjectContext } from "../Workspace";
 import { JSONInteractionDropDownDiv } from "./Styling";
 
@@ -19,7 +20,7 @@ export default function ChangeLinkButton() {
 
   const changeLink = (ev: ChangeEvent) => {
     if(selected) {
-      let entered = (ev.target as HTMLInputElement).value.replace(/ |{|}|\||\\|\^|~|\[|\]|`/g, "");
+      let entered = (ev.target as HTMLInputElement).value.replace(ValidationRules.LinkRule, "");
 
       if(entered) selected.obj.link = entered;
       else selected.obj.link = undefined;

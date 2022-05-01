@@ -1,4 +1,5 @@
 import { FormEvent, useContext } from "react";
+import ValidationRules from "../Validation/Rules";
 import { selectedObjectContext } from "../Workspace";
 
 const selectedTitle: React.CSSProperties = {
@@ -21,8 +22,8 @@ export default function ObjectName() {
       let value = (ev.target as HTMLInputElement).value;
 
       // Validation
-      value = value.replace(/\/|\\|"|<|>|:|\?|\*|\|/g, "");
-      if(selected.obj.children) value = value.replace(/[^\w| |\.|\-]/g, "");
+      if(selected.obj.children) value = value.replace(ValidationRules.NameFolderRule, "");
+      else value = value.replace(ValidationRules.NameFileRule, "");
 
 
       // add extension
