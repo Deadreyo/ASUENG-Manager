@@ -1,5 +1,5 @@
 import React from 'react';
-import { Col, Row } from 'react-bootstrap';
+import { Col } from 'react-bootstrap';
 import OpenFolderOption from './SidePanelOptions/OpenFolderOption';
 import OpenProjectOption from './SidePanelOptions/OpenProjectOption';
 import SaveASProjectOption from './SidePanelOptions/SaveASProjectOption';
@@ -27,10 +27,6 @@ const optionsPart: React.CSSProperties = {
   "paddingRight": "5px"
 }
 
-const optionsSubtitles: React.CSSProperties = {
-  fontSize: "larger"
-}
-
 
 export default function SidePanel() {
 
@@ -49,16 +45,16 @@ export default function SidePanel() {
     <Col style={optionsPart}>
       <hr />
       <h5 className="ps-4 mb-4">Project Menu</h5>
-      <OpenProjectOption style={optionsSubtitles} />
-      <OpenFolderOption style={optionsSubtitles} />
-      <SaveProjectOption style={optionsSubtitles} />
-      <SaveASProjectOption style={optionsSubtitles} />
-      <h6 className="ps-5 mb-4" style={optionsSubtitles}><i className="fa fa-home pe-2" aria-hidden="true"></i> Import Links from Project</h6>
-      <h6 className="ps-5 mb-4" style={optionsSubtitles}><i className="fa fa-home pe-2" aria-hidden="true"></i> Close Project</h6>
-      <h6 className="ps-5 mb-4" style={optionsSubtitles}><i className="fa fa-home pe-2" aria-hidden="true"></i> New Project</h6>
-      <h6 className="ps-5 mb-4" style={optionsSubtitles}><i className="fa fa-home pe-2" aria-hidden="true"></i> Download Project to Folder</h6>
-      <h6 className="ps-5 mb-4" style={optionsSubtitles}><i className="fa fa-home pe-2" aria-hidden="true"></i> Option 1</h6>
-      <h6 className="ps-5 mb-4" style={optionsSubtitles}><i className="fa fa-home pe-2" aria-hidden="true"></i> Option 1</h6>
+      <OpenProjectOption />
+      <OpenFolderOption />
+      <SaveProjectOption />
+      <SaveASProjectOption />
+      <h6 className="ps-5 mb-4 sidepanelOptionsTitle text-white-50"><i className="fa fa-home pe-2" aria-hidden="true"></i> Import Links from Project</h6>
+      <h6 className="ps-5 mb-4 sidepanelOptionsTitle text-white-50"><i className="fa fa-home pe-2" aria-hidden="true"></i> Close Project</h6>
+      <h6 className="ps-5 mb-4 sidepanelOptionsTitle text-white-50"><i className="fa fa-home pe-2" aria-hidden="true"></i> New Project</h6>
+      <h6 className="ps-5 mb-4 sidepanelOptionsTitle text-white-50"><i className="fa fa-home pe-2" aria-hidden="true"></i> Download Project to Folder</h6>
+      {/* <h6 className="ps-5 mb-4 sidepanelOptionsTitle text-white-50"><i className="fa fa-home pe-2" aria-hidden="true"></i> Option 1</h6>
+      <h6 className="ps-5 mb-4 sidepanelOptionsTitle text-white-50"><i className="fa fa-home pe-2" aria-hidden="true"></i> Option 1</h6> */}
     </Col>
 
     </div>

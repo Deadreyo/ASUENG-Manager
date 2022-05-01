@@ -22,7 +22,7 @@ export default function ObjectName() {
 
       // Validation
       value = value.replace(/\/|\\|"|<|>|:|\?|\*|\|/g, "");
-      if(selected.obj.children) value = value.replace(/[^\w| ]/g, "");
+      if(selected.obj.children) value = value.replace(/[^\w| |\.|\-]/g, "");
 
 
       // add extension

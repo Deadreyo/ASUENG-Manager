@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import ProjectObject from "renderer/@types/ProjectObjectInterface";
 import { selectedObjectContext } from "../Workspace";
 import JsonMapChildren from "./JsonMapChildren";
@@ -66,7 +66,16 @@ export default function JsonElement( {object} : {object: ProjectObject}) {
     const [icon, setIcon] = useState(object.children? "fa-folder" : "fa-file");
     const {selected, setSelected} = useContext(selectedObjectContext)
 
-    let childrenElements: JSX.Element | JSX.Element[] | null = JsonMapChildren(object.children);
+    useEffect(() => {
+      if(display == "inherit") {
+        if(object.children) setIcon("fa-folder-open")
+        else setIcon("fa-file-alt")
+      } else {
+        if(object.children) setIcon("fa-folder")
+        else setIcon("fa-file")
+      }
+    }, [object])
+
 
     // Validation
     const [validName, invalidChar] = NameValidation(object)
@@ -74,6 +83,18 @@ export default function JsonElement( {object} : {object: ProjectObject}) {
     const FolderFileNameStyle: React.CSSProperties = {
       color: validName? "rgb(230, 85, 13)" : "red"
     }
+
+    if(object.note && !Array.isArray(object.note)) {
+      object.note = [object.note]
+    }
+    if(object.source && !Array.isArray(object.source)) {
+      object.source = [object.source]
+    }
+    if(object.credits && !Array.isArray(object.credits)) {
+      object.credits = [object.credits]
+    }
+
+    let childrenElements: JSX.Element | JSX.Element[] | null = JsonMapChildren(object.children);
 
     const expandObject = () => {
       // setDisplay("none")

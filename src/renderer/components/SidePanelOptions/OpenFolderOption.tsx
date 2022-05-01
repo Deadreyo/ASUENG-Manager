@@ -1,13 +1,12 @@
 import { ipcRenderer } from "electron"
-import { readdirSync, readFileSync } from "fs"
-import React, { useContext } from "react"
+import { useContext } from "react"
 import { Anchor } from "react-bootstrap"
 import { projectContext } from "renderer/App"
 import { FolderToObject } from "renderer/utilities/FolderToObject"
 
-export default function OpenFolderOption({style} : {style : React.CSSProperties | undefined}) {
+export default function OpenFolderOption() {
 
-    const {project, setProject} = useContext(projectContext)
+    const {setProject} = useContext(projectContext)
 
     const CreateFromFolder = () => {
 
@@ -15,13 +14,14 @@ export default function OpenFolderOption({style} : {style : React.CSSProperties 
       .then( (filePath) => {
         if(!filePath) return;
         let project = FolderToObject(filePath, "normal", true)
+        console.log("project: ", project)
         setProject(project)
       })
     }
 
     return(
-        <Anchor role="" color="primary" onClick={() => CreateFromFolder()}>
-            <h6 className="ps-5 mb-4" style={style}><i className="fa fa-home pe-2" aria-hidden="true"></i> Folder to Project</h6>
+        <Anchor role="" color="primary" onClick={() => CreateFromFolder()} className="sidepanelOptionsAnchor">
+            <h6 className="ps-5 mb-4 sidepanelOptionsTitle"><i className="fa fa-home pe-2" aria-hidden="true"></i> Folder to Project</h6>
         </Anchor>
     )
 }

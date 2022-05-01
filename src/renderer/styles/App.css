@@ -35,6 +35,20 @@ body {
   background-color: #039be5;
 }
 
+.sidepanelOptionsAnchor {
+  text-decoration: none;
+}
+.sidepanelOptionsAnchor:hover {
+  text-decoration: underline;
+  text-decoration-color: brown;
+  text-decoration-thickness: 3px;
+}
+.sidepanelOptionsTitle {
+  font-size: larger;
+}
+.sidepanelOptionsTitle:hover {
+  text-shadow: aqua;
+}
 /*
 button {
   background-color: white;

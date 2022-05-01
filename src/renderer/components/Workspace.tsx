@@ -12,6 +12,8 @@ import ObjectName from "./JSON Interactions/Name";
 import AddNoteButton from "./JSON Interactions/AddNote";
 import AddCreditButton from "./JSON Interactions/AddCredits";
 import AddSourceButton from "./JSON Interactions/AddSource";
+import AddFileButton from "./JSON Interactions/AddFile";
+import AddFolderButton from "./JSON Interactions/AddFolder";
 // const fs = window.require('fs');
 
 const mainContent: React.CSSProperties = {
@@ -53,24 +55,26 @@ export default function MainPage() {
           {/* </Col> */}
           <Col xs={4}>
             <Row style={{marginLeft: "1px"}}>
-              <Col xs={12} style={{backgroundColor: "#0c0d0e", paddingTop: "5px", paddingBottom: "5px"}} className="bg-light">
-                {/* <Row> */}
-                  {/* {selected &&
-                    <Col xs={12} className="mb-2">
-                      {/* <h5>{selected.name}</h5> */}
-                      {/* <input type={"text"} style={selectedTitle} className="mb-2" value={selected.name}/> */}
-
-                    {/* </Col> */}
-
-                  <ObjectName />
-                  <ChangeDateButton />
-                  <ChangeLinkButton />
-                  <AddNoteButton />
-                  <AddCreditButton />
-                  <AddSourceButton />
-                {/* </Row> */}
-              </Col>
-
+              {selected ?
+                <Col xs={12} style={{backgroundColor: "#0c0d0e", paddingTop: "5px", paddingBottom: "5px"}} className="bg-light">
+                    <ObjectName />
+                    {selected?.obj.children ?
+                    <>
+                      <AddFolderButton />
+                      <AddFileButton />
+                    <ChangeDateButton />
+                      <AddNoteButton />
+                      <AddCreditButton />
+                      <AddSourceButton />
+                    </>
+                    :
+                    <>
+                      <ChangeLinkButton />
+                      <ChangeDateButton />
+                    </>
+                    }
+                </Col>
+              : null}
 
             </Row>
           </Col>

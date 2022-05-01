@@ -1,12 +1,12 @@
 import { ipcRenderer } from "electron"
-import { readdirSync, readFileSync } from "fs"
-import React, { useContext } from "react"
+import { readFileSync } from "fs"
+import { useContext } from "react"
 import { Anchor } from "react-bootstrap"
 import { projectContext } from "renderer/App"
 
-export default function OpenProjectOption({style} : {style : React.CSSProperties | undefined}) {
+export default function OpenProjectOption() {
 
-    const {project, setProject} = useContext(projectContext)
+    const {setProject} = useContext(projectContext)
 
     const CreateFromJson = () => {
 
@@ -18,8 +18,8 @@ export default function OpenProjectOption({style} : {style : React.CSSProperties
     }
 
     return(
-        <Anchor role="" color="primary" onClick={() => CreateFromJson()}>
-            <h6 className="ps-5 mb-4" style={style}><i className="fa fa-home pe-2" aria-hidden="true"></i> Open a Project</h6>
+        <Anchor role="" color="primary" onClick={() => CreateFromJson()} className="sidepanelOptionsAnchor">
+            <h6 className="ps-5 mb-4 sidepanelOptionsTitle"><i className="fa fa-home pe-2" aria-hidden="true"></i> Open a Project</h6>
         </Anchor>
     )
 }

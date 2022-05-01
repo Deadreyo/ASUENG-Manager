@@ -10,7 +10,7 @@ export function NameValidation(object: ProjectObject): [boolean, string] {
   let valid = true;
   let objName = object.name.replace(".pdf", "")
   let invalidChar = "";
-  let search = object.children? /[^\w| ]/g : /\/|\\|"|<|>|:|\?|\*|\|/g ;
+  let search = object.children? /[^\w| |\.|\-]/g : /\/|\\|"|<|>|:|\?|\*|\|/g ;
 
   let invalidCharPos = objName.search(search)
   if(invalidCharPos != -1) {
