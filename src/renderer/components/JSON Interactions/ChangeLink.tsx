@@ -25,7 +25,7 @@ export default function ChangeLinkButton() {
       if(entered) selected.obj.link = entered;
       else selected.obj.link = undefined;
 
-      setSelected({obj: selected.obj})
+      setSelected({obj: selected.obj, parent: selected.parent})
     }
 
 

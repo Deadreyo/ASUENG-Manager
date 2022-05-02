@@ -14,6 +14,7 @@ import AddCreditButton from "./JSON Interactions/AddCredits";
 import AddSourceButton from "./JSON Interactions/AddSource";
 import AddFileButton from "./JSON Interactions/AddFile";
 import AddFolderButton from "./JSON Interactions/AddFolder";
+import DeleteButton from "./JSON Interactions/Delete";
 // const fs = window.require('fs');
 
 const mainContent: React.CSSProperties = {
@@ -21,18 +22,18 @@ const mainContent: React.CSSProperties = {
   overflowY: "auto",
 }
 
-type selectionType = {obj: ProjectObject} | undefined
+type selectionType = {obj: ProjectObject, parent: ProjectObject | undefined} | undefined
 type selectionContextType = { selected: selectionType, setSelected: (selection: selectionType) => void }
 
 export const selectedObjectContext = createContext<selectionContextType>(
   {
-    selected: {obj: jsonTest},
+    selected: {obj: jsonTest, parent: undefined},
     setSelected: () => {}
   }
 )
 export default function MainPage() {
 
-  let [selected, setSelected] = React.useState<selectionType>({obj: jsonTest})
+  let [selected, setSelected] = React.useState<selectionType>({obj: jsonTest, parent: undefined})
 
   return(
     <selectedObjectContext.Provider value={{selected, setSelected}}>
@@ -73,6 +74,7 @@ export default function MainPage() {
                       <ChangeDateButton />
                     </>
                     }
+                  <DeleteButton />
                 </Col>
               : null}
 

@@ -17,7 +17,7 @@ export default function JsonContainer({src}: {src: ProjectObject}) {
 
     return(
         <div style={containerStyle}>
-          <JsonElement object={src} />
+          <JsonElement object={src} parent={undefined} />
         </div>
     )
 }

@@ -59,7 +59,7 @@ const LinkTextStyle: React.CSSProperties = {
 }
 
 
-export default function JsonElement( {object} : {object: ProjectObject}) {
+export default function JsonElement( {object, parent} : {object: ProjectObject, parent: ProjectObject | undefined}) {
 
 
     const [display, setDisplay] = useState("none");
@@ -94,7 +94,7 @@ export default function JsonElement( {object} : {object: ProjectObject}) {
       object.credits = [object.credits]
     }
 
-    let childrenElements: JSX.Element | JSX.Element[] | null = JsonMapChildren(object.children);
+    let childrenElements: JSX.Element | JSX.Element[] | null = JsonMapChildren(object);
 
     const expandObject = () => {
       // setDisplay("none")
@@ -111,8 +111,8 @@ export default function JsonElement( {object} : {object: ProjectObject}) {
     }
 
     const selectObject = () => {
-      if(object !== selected?.obj) setSelected({obj: object});
-      else setSelected(undefined)
+      if(object !== selected?.obj) setSelected({obj: object, parent: parent});
+      else setSelected(undefined);
     }
 
     let styleUsed = object.children? FolderIconStyle : FileIconStyle;

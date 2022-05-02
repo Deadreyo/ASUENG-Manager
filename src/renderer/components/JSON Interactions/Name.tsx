@@ -30,7 +30,7 @@ export default function ObjectName() {
       if(!selected.obj.children) value += ".pdf";
 
       selected.obj.name = value;
-      setSelected({obj: selected.obj})
+      setSelected({obj: selected.obj, parent: selected.parent})
     }
   }
 

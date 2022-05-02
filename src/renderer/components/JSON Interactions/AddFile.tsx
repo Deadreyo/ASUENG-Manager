@@ -19,7 +19,7 @@ export default function AddFileButton() {
       (selected.obj.children as ProjectObject[]).push({
         name: name+".pdf"
       })
-      setSelected({obj: selected.obj})
+      setSelected({obj: selected.obj, parent: selected.parent})
       setName("")
     }
   }
@@ -27,7 +27,6 @@ export default function AddFileButton() {
   const nameChange = (ev: ChangeEvent) => {
     let val = (ev.target as HTMLInputElement).value
     // Validation
-    console.log(ValidationRules.NameFileRule)
     val = val.replace(ValidationRules.NameFileRule, "");
     setName(val);
   }

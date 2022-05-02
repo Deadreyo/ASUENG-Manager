@@ -18,7 +18,7 @@ export default function AddFolderButton() {
         name: name,
         children: []
       })
-      setSelected({obj: selected.obj})
+      setSelected({obj: selected.obj, parent: selected.parent})
       setName("")
     }
   }
