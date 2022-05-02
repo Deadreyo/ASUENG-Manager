@@ -19,9 +19,9 @@ export default function DeleteButton() {
     if(selected && selected.parent) {
 
 
-      selected.obj.children = undefined;
+      // selected.obj.children = undefined;
       let parentChildren = selected.parent.children as ProjectObject[]
-      (parentChildren).splice(parentChildren.indexOf(selected.obj, 1))
+      (parentChildren).splice(parentChildren.indexOf(selected.obj), 1);
 
       setSelected(undefined)
       setShow(false);
