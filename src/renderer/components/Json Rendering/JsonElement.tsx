@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import ProjectObject from "renderer/@types/ProjectObjectInterface";
 import { selectedObjectContext } from "../Workspace";
+import ErrorComponent from "./ErrorComponent";
 import JsonMapChildren from "./JsonMapChildren";
 import { NameValidation } from "./JsonValidation";
 
@@ -125,7 +126,7 @@ export default function JsonElement( {object, parent} : {object: ProjectObject, 
           </span>
           :
           <span style={FolderFileNameStyle} onClick={() => selectObject()}>
-          {invalidChar !== ""? <>{" "}<i className="fa-solid fa-triangle-exclamation" title={`( ${invalidChar} ) is not allowed.`}></i></> : null}
+            {invalidChar !== ""? <ErrorComponent title={`( ${invalidChar} ) is not allowed.`} /> : null}
             {" "+object.name}
           </span>
         </span>

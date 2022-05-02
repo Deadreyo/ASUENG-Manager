@@ -15,6 +15,7 @@ import AddSourceButton from "./JSON Interactions/AddSource";
 import AddFileButton from "./JSON Interactions/AddFile";
 import AddFolderButton from "./JSON Interactions/AddFolder";
 import DeleteButton from "./JSON Interactions/Delete";
+import OverviewContainer from "./Json Overview/OverviewContainer";
 // const fs = window.require('fs');
 
 const mainContent: React.CSSProperties = {
@@ -41,9 +42,10 @@ export default function MainPage() {
       <Row style={mainContent}>
         <Row className="mt-3">
           <Col xs={12}>
-            {/* <Button variant="primary" size="sm" onClick = {CreateFromJson}>Open a JSON file</Button> */}
-            <h5 className="mt-4">Workspace</h5>
-            <hr />
+            <center>
+
+            <h5 className="mt-4 mb-3 pb-1 text-warning" style={{borderBottom: "#303030 1px solid"}}>Workspace</h5>
+            </center>
           </Col>
         </Row>
 
@@ -81,6 +83,7 @@ export default function MainPage() {
             </Row>
           </Col>
         </Row>
+        <OverviewContainer />
 
       </Row>
     </selectedObjectContext.Provider>

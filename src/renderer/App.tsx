@@ -7,6 +7,7 @@ import SidePanel from './components/SidePanel';
 import MainPage from './components/Workspace';
 import React, { createContext, useState } from 'react';
 import jsonTest from './components/jsonTest.json';
+import ProjectObject from './@types/ProjectObjectInterface';
 
 // const Hello = () => {
 //   return (
@@ -44,7 +45,7 @@ import jsonTest from './components/jsonTest.json';
 //     </div>
 //   );
 // };
-export const projectContext = createContext({ project: jsonTest, setProject: (obj) => {}})
+export const projectContext = createContext({ project: jsonTest as ProjectObject, setProject: (obj) => {}})
 
 export default function App() {
   const [project, setProject] =  useState(jsonTest)
