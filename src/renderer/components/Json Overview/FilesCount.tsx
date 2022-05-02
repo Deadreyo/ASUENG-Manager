@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react"
 import ProjectObject from "renderer/@types/ProjectObjectInterface"
 import { projectContext } from "renderer/App"
 import { selectedObjectContext } from "../Workspace"
+import { JSONoverviewResultStyle, JSONoverviewTitleStyle } from "./Styling"
 
 export default function FilesCount() {
   const {project} = useContext(projectContext)
@@ -27,6 +28,6 @@ export default function FilesCount() {
   }
 
   return(
-    <h6>Folders Count: {filesCount}</h6>
+    <h6 style={JSONoverviewTitleStyle}>Files Count: <span style={JSONoverviewResultStyle}>{filesCount}</span></h6>
   )
 }

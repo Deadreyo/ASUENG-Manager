@@ -8,7 +8,7 @@ export default function JSONViewer() {
   const {project} = useContext(projectContext)
   //ashes, brewer, bright
   return(
-    // <ReactJson src={project} theme={"brewer"} displayDataTypes={false} style={styles} name="project" collapsed={1} quotesOnKeys={false} />
+    // <ReactJson src={project} theme={"ashes"} displayDataTypes={false} name="project" collapsed={1} quotesOnKeys={false} />
     <JsonContainer src={project}/>
   )
 }

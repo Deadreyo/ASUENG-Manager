@@ -12,8 +12,8 @@ export function NameValidation(object: ProjectObject): [boolean, string] {
   let objName = object.name.replace(".pdf", "")
   let invalidChar = "";
   let search = object.children? ValidationRules.NameFolderRule : ValidationRules.NameFileRule ;
-
   let invalidCharPos = objName.search(search)
+  if(objName == "") invalidCharPos = 0;
   if(invalidCharPos != -1) {
     valid = false;
     invalidChar = objName[invalidCharPos];
