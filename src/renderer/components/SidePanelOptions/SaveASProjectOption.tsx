@@ -32,7 +32,7 @@ export default function SaveASProjectOption() {
     return(
         <Anchor role="" color="primary" onClick={() => SaveAsJSON()} className="sidepanelOptionsAnchor">
             <h6 className="ps-5 mb-4 sidepanelOptionsTitle">
-              <i className="fa fa-home pe-2" aria-hidden="true"></i> Save Project As
+              <i className="fa fa-save pe-2" aria-hidden="true"></i> Save Project As
             </h6>
         </Anchor>
     )

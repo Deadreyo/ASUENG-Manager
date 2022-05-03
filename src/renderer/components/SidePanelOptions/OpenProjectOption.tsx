@@ -19,7 +19,7 @@ export default function OpenProjectOption() {
 
     return(
         <Anchor role="" color="primary" onClick={() => CreateFromJson()} className="sidepanelOptionsAnchor">
-            <h6 className="ps-5 mb-4 sidepanelOptionsTitle"><i className="fa fa-home pe-2" aria-hidden="true"></i> Open a Project</h6>
+            <h6 className="ps-5 mb-4 sidepanelOptionsTitle"><i className="fa fa-file-upload pe-2" aria-hidden="true"></i> Open a Project</h6>
         </Anchor>
     )
 }

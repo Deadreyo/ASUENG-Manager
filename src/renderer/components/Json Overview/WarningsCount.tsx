@@ -3,22 +3,22 @@ import { projectContext } from "renderer/App"
 import { selectedObjectContext } from "../Workspace"
 import { JSONoverviewResultStyle, JSONoverviewTitleStyle } from "./Styling"
 
-let errorsCount = 0;
+let warningsCount = 0;
 
-export default function ErrorsCount() {
+export default function WarningsCount() {
   const {project} = useContext(projectContext)
   const {selected} = useContext(selectedObjectContext)
   const [, refresh] = useState(0)
 
   useEffect(() => {
-    refresh(errorsCount)
+    refresh(warningsCount)
   }, [selected, project])
 
   return(
-    <h6 style={JSONoverviewTitleStyle}>Errors Count: <span style={{...JSONoverviewResultStyle, color: "red"}}>{errorsCount}</span></h6>
+    <h6 style={JSONoverviewTitleStyle}>Warnings Count: <span style={{...JSONoverviewResultStyle, color: "#e6e60d"}}>{warningsCount}</span></h6>
   )
 }
 
-export function modifyErrorsCount(value: number) {
-  errorsCount += value;
+export function modifyWarningsCount(value: number) {
+  warningsCount += value;
 }

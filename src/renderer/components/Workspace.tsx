@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import React, { createContext } from "react";
+import React, { createContext, useContext, useEffect } from "react";
 import { Col, Row } from "react-bootstrap";
 import ProjectObject from "renderer/@types/ProjectObjectInterface";
 import jsonTest from './jsonTest.json'
@@ -16,6 +16,7 @@ import AddFileButton from "./JSON Interactions/AddFile";
 import AddFolderButton from "./JSON Interactions/AddFolder";
 import DeleteButton from "./JSON Interactions/Delete";
 import OverviewContainer from "./Json Overview/OverviewContainer";
+import { projectContext } from "renderer/App";
 // const fs = window.require('fs');
 
 const mainContent: React.CSSProperties = {
@@ -35,6 +36,11 @@ export const selectedObjectContext = createContext<selectionContextType>(
 export default function MainPage() {
 
   let [selected, setSelected] = React.useState<selectionType>({obj: jsonTest, parent: undefined})
+  let {project} = useContext(projectContext)
+
+  useEffect( () => {
+    setSelected(undefined)
+  }, [project])
 
   return(
     <selectedObjectContext.Provider value={{selected, setSelected}}>

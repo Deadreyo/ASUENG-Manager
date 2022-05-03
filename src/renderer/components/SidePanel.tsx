@@ -47,8 +47,8 @@ export default function SidePanel() {
       <h5 className="ps-4 mb-4">Project Menu</h5>
       <OpenProjectOption />
       <OpenFolderOption />
-      <SaveProjectOption />
       <SaveASProjectOption />
+      <SaveProjectOption />
       <h6 className="ps-5 mb-4 sidepanelOptionsTitle text-white-50"><i className="fa fa-home pe-2" aria-hidden="true"></i> Import Links from Project</h6>
       <h6 className="ps-5 mb-4 sidepanelOptionsTitle text-white-50"><i className="fa fa-home pe-2" aria-hidden="true"></i> Close Project</h6>
       <h6 className="ps-5 mb-4 sidepanelOptionsTitle text-white-50"><i className="fa fa-home pe-2" aria-hidden="true"></i> New Project</h6>

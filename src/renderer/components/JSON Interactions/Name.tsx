@@ -22,8 +22,8 @@ export default function ObjectName() {
       let value = (ev.target as HTMLInputElement).value;
 
       // Validation
-      // if(selected.obj.children) value = value.replace(ValidationRules.NameFolderRule, "");
-      // else value = value.replace(ValidationRules.NameFileRule, "");
+      if(selected.obj.children) value = value.replace(ValidationRules.NameFolderRule, "");
+      else value = value.replace(ValidationRules.NameFileRule, "");
 
 
       // add extension

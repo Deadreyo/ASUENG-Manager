@@ -2,6 +2,7 @@ import { Row, Col } from "react-bootstrap";
 import ErrorsCount from "./ErrorsCount";
 import FilesCount from "./FilesCount";
 import FoldersCount from "./FoldersCount";
+import WarningsCount from "./WarningsCount";
 
 export default function OverviewContainer() {
 
@@ -14,8 +15,7 @@ export default function OverviewContainer() {
             <FoldersCount />
             <FilesCount />
             <ErrorsCount />
-            <h6>Errors: 22</h6>
-            <h6>Unlinked Files: 6</h6>
+            <WarningsCount />
           </div>
 
 

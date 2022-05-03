@@ -21,7 +21,7 @@ export default function OpenFolderOption() {
 
     return(
         <Anchor role="" color="primary" onClick={() => CreateFromFolder()} className="sidepanelOptionsAnchor">
-            <h6 className="ps-5 mb-4 sidepanelOptionsTitle"><i className="fa fa-home pe-2" aria-hidden="true"></i> Folder to Project</h6>
+            <h6 className="ps-5 mb-4 sidepanelOptionsTitle"><i className="fa fa-folder-plus pe-2" aria-hidden="true"></i> Folder to Project</h6>
         </Anchor>
     )
 }

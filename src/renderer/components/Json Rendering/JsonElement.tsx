@@ -4,6 +4,7 @@ import { selectedObjectContext } from "../Workspace";
 import ErrorComponent from "./ErrorComponent";
 import JsonMapChildren from "./JsonMapChildren";
 import { NameValidation } from "./JsonValidation";
+import WarningComponent from "./WarningComponent";
 
 const innerContainersStyle: React.CSSProperties = {
   paddingLeft: "30px",
@@ -80,9 +81,10 @@ export default function JsonElement( {object, parent} : {object: ProjectObject, 
 
     // Validation
     const [validName, invalidChar] = NameValidation(object)
+    const unlinkedFile = !object.children && !object.link;
 
     const FolderFileNameStyle: React.CSSProperties = {
-      color: validName? "rgb(230, 85, 13)" : "red"
+      color: validName? unlinkedFile? "#e6e60d" :"rgb(230, 85, 13)" : "red"
     }
 
     if(object.note && !Array.isArray(object.note)) {
@@ -126,7 +128,10 @@ export default function JsonElement( {object, parent} : {object: ProjectObject, 
           </span>
           :
           <span style={FolderFileNameStyle} onClick={() => selectObject()}>
-            {invalidChar !== ""? <ErrorComponent title={`( ${invalidChar} ) is not allowed.`} /> : null}
+            {invalidChar !== ""? <ErrorComponent title={`( ${invalidChar} ) is not allowed.`} />
+            : unlinkedFile? <WarningComponent title={`File has no link.`} />
+            : null
+            }
             {" "+object.name}
           </span>
         </span>
