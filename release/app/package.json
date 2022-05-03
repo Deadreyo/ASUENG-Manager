@@ -1,12 +1,12 @@
 {
-  "name": "electron-react-boilerplate",
-  "version": "4.5.0",
-  "description": "A foundation for scalable desktop apps",
+  "name": "asueng-manager",
+  "version": "0.1.0",
+  "description": "A cross-platform desktop application that converts local folders into json files in order to make data files for ASUENG Library website.",
   "main": "./dist/main/main.js",
   "author": {
-    "name": "Electron React Boilerplate Maintainers",
-    "email": "electronreactboilerplate@gmail.com",
-    "url": "https://github.com/electron-react-boilerplate"
+    "name": "Ahmed Atwa",
+    "email": "ahmedatwa866@yahoo.com",
+    "url": "https://github.com/Deadreyo/ASUENG-Manager"
   },
   "scripts": {
     "electron-rebuild": "node -r ts-node/register ../../.erb/scripts/electron-rebuild.js",
@@ -14,5 +14,5 @@
     "postinstall": "npm run electron-rebuild && npm run link-modules"
   },
   "dependencies": {},
-  "license": "MIT"
+  "license": "GPL-3.0-or-later"
 }
