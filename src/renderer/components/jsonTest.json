@@ -1,13 +1,12 @@
 {
-    "name": "jsonTest",
-    "date": "20",
+    "name": "New Project",
     "children": [
         {
-            "name": "jsonTest1",
+            "name": "File1.pdf",
             "date": "20"
         },
         {
-            "name": "jsonTest2",
+            "name": "File2.pdf",
             "date": "20"
         }
     ]
