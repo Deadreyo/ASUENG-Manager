@@ -24,7 +24,7 @@ export default function ChangeDateButton() {
       if(!parseInt(entered) || parseInt(entered) > currentYear + 1 || parseInt(entered) < 17) return;
 
       selected.obj.date = (ev.target as HTMLInputElement).value;
-      setSelected({obj: selected.obj})
+      setSelected({obj: selected.obj, parent: selected.parent})
     }
   }
 
@@ -35,7 +35,7 @@ export default function ChangeDateButton() {
       } else {
         selected.obj.date = "20";
       }
-      setSelected({obj: selected.obj})
+      setSelected({obj: selected.obj, parent: selected.parent})
     }
   }
 
