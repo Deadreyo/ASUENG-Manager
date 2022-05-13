@@ -19,6 +19,7 @@ const NoteTextStyle: React.CSSProperties = {
 export default function JsonNote({note, object} : {note: noteObject, object: ProjectObject}) {
 
   return (
+    <>
     <div style={NoteTextStyle}>
       <i className="fas fa-comment-dots" style={NoteIconStyle}></i>
       {" "}note {note.date?
@@ -27,6 +28,12 @@ export default function JsonNote({note, object} : {note: noteObject, object: Pro
           {" "+note.date}
         </span> : null}
       : <span>{note.message}</span>
+    <span style={{float: "right", fontStyle: "normal", paddingRight: "2px", paddingLeft: "2px"}} className="bg-danger text-white">
+      <a href="#"><i className="fas fa-comment-dots" style={NoteIconStyle}></i></a>
+      <a href="#"><i className="fas fa-comment-dots" style={NoteIconStyle}></i></a>
+      <a href="#"><i className="fas fa-comment-dots" style={NoteIconStyle}></i></a>
+    </span>
     </div>
+  </>
   )
 }

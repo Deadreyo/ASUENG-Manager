@@ -143,13 +143,13 @@ export default function JsonElement( {object, parent} : {object: ProjectObject, 
 
           {object.date? <div style={DateTextStyle}><i className="fa-solid fa-calendar" style={DateIconStyle}></i> date : <span>{object.date}</span></div>
             : null}
-          {object.note? object.note.map( (note, i) => <JsonNote note={note} object={object} key={i} />)
-            : null}
-            {object.source? object.source.map( (str, i) => <JsonSource source={str} object={object} key={i} />)
-            : null}
           {object.link? <div style={LinkTextStyle}><i className="fas fa-link" style={LinkIconStyle}></i> link : <span>{object.link}</span></div>
             : null}
+          {object.note? object.note.map( (note, i) => <JsonNote note={note} object={object} key={i} />)
+            : null}
             {object.credits? object.credits.map( (str, i) => <JsonCredits credit={str} object={object} key={i} /> )
+            : null}
+            {object.source? object.source.map( (str, i) => <JsonSource source={str} object={object} key={i} />)
             : null}
           {
           childrenElements
