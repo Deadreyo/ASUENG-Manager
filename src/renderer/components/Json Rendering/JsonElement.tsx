@@ -2,7 +2,10 @@ import { useContext, useEffect, useState } from "react";
 import ProjectObject from "renderer/@types/ProjectObjectInterface";
 import { selectedObjectContext } from "../Workspace";
 import ErrorComponent from "./ErrorComponent";
+import JsonCredits from "./JsonCredits";
 import JsonMapChildren from "./JsonMapChildren";
+import JsonNote from "./JsonNote";
+import JsonSource from "./JsonSource";
 import { NameValidation } from "./JsonValidation";
 import WarningComponent from "./WarningComponent";
 
@@ -140,13 +143,13 @@ export default function JsonElement( {object, parent} : {object: ProjectObject, 
 
           {object.date? <div style={DateTextStyle}><i className="fa-solid fa-calendar" style={DateIconStyle}></i> date : <span>{object.date}</span></div>
             : null}
-          {object.note? object.note.map( (note, i) => <div style={NoteTextStyle} key={i}><i className="fas fa-comment-dots" style={NoteIconStyle}></i> note {note.date? <span style={DateIconStyle}><i className="fa-solid fa-calendar" style={Object.assign({}, NoteTextStyle, DateIconStyle)}></i>{" "+note.date}</span> : null} : <span>{note.message}</span></div>)
+          {object.note? object.note.map( (note, i) => <JsonNote note={note} object={object} key={i} />)
             : null}
-          {object.source? object.source.map( (str, i) => ( <div style={SourceTextStyle} key={i}><i className="fas fa-link" style={SourceIconStyle}></i> source : <span>{str}</span> </div> ))
+            {object.source? object.source.map( (str, i) => <JsonSource source={str} object={object} key={i} />)
             : null}
           {object.link? <div style={LinkTextStyle}><i className="fas fa-link" style={LinkIconStyle}></i> link : <span>{object.link}</span></div>
             : null}
-          {object.credits? object.credits.map( (str, i) => ( <div style={CreditsTextStyle} key={i}><i className="fas fa-thumbs-up" style={CreditsIconStyle}></i> credits : <span>{str}</span></div>))
+            {object.credits? object.credits.map( (str, i) => <JsonCredits credit={str} object={object} key={i} /> )
             : null}
           {
           childrenElements
