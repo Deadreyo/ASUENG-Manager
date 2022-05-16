@@ -31,30 +31,6 @@ const DateTextStyle: React.CSSProperties = {
   fontStyle: "italic",
 }
 
-const NoteIconStyle: React.CSSProperties = {
-  color: "grey",
-}
-const NoteTextStyle: React.CSSProperties = {
-  color: "rgb(149, 150, 151)",
-  fontStyle: "italic",
-}
-
-const CreditsIconStyle: React.CSSProperties = {
-  color: "rgb(49, 130, 189)",
-}
-const CreditsTextStyle: React.CSSProperties = {
-  color: "rgb(49, 130, 189)",
-  fontStyle: "italic",
-}
-
-const SourceIconStyle: React.CSSProperties = {
-  color: "grey",
-}
-const SourceTextStyle: React.CSSProperties = {
-  color: "rgb(149, 150, 151)",
-  fontStyle: "italic",
-}
-
 const LinkIconStyle: React.CSSProperties = {
   color: "#03a9f4",
 }

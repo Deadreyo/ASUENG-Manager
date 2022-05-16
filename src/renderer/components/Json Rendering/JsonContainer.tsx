@@ -1,5 +1,6 @@
-import React from "react"
+import React, { useContext, useEffect } from "react"
 import ProjectObject from "renderer/@types/ProjectObjectInterface"
+import { selectedObjectContext } from "../Workspace"
 import JsonElement from "./JsonElement"
 
 const containerStyle: React.CSSProperties = {
@@ -14,6 +15,12 @@ const containerStyle: React.CSSProperties = {
 }
 
 export default function JsonContainer({src}: {src: ProjectObject}) {
+
+  let {selected, setSelected} = useContext(selectedObjectContext)
+
+  useEffect( () => {
+    if(selected === null) setSelected(undefined); // reverter for JsonNote null setting
+  }, [selected])
 
     return(
         <div style={containerStyle}>
