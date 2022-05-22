@@ -1,7 +1,7 @@
 import { useContext } from "react"
 import ProjectObject from "renderer/@types/ProjectObjectInterface"
 import { selectedObjectContext } from "../Workspace"
-import DeleteIcon from "./DeleteIcon"
+import DeleteButton from "./DeleteButton"
 
 const CreditsIconStyle: React.CSSProperties = {
   color: "rgb(49, 130, 189)",
@@ -29,9 +29,7 @@ export default function JsonCredits({credit, object} : {credit: string, object: 
       <div style={CreditsTextStyle}>
         <i className="fas fa-link" style={CreditsIconStyle}>
         </i> credit : <span>{credit}</span>
-        <span style={{float: "right", fontStyle: "normal", paddingRight: "2px", paddingLeft: "2px"}} className="bg-danger text-white">
-          <DeleteIcon onClick={deleteCredit} />
-        </span>
+        <DeleteButton onClick={deleteCredit} />
       </div>
     </>
   )

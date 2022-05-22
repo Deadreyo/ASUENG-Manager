@@ -1,7 +1,7 @@
 import { useContext, useEffect } from "react"
 import ProjectObject, { noteObject } from "renderer/@types/ProjectObjectInterface"
 import { selectedObjectContext } from "../Workspace"
-import DeleteIcon from "./DeleteIcon"
+import DeleteButton from "./DeleteButton"
 
 const DateIconStyle: React.CSSProperties = {
   color: "#ed6210",
@@ -38,9 +38,7 @@ export default function JsonNote({note, object} : {note: noteObject, object: Pro
           {" "+note.date}
         </span> : null}
       : <span>{note.message}</span>
-    <span style={{float: "right", fontStyle: "normal", paddingRight: "2px", paddingLeft: "2px"}} className="bg-danger text-white">
-      <DeleteIcon onClick={deleteNote} />
-    </span>
+    <DeleteButton onClick={deleteNote} />
     </div>
   </>
   )
