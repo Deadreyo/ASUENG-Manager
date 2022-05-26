@@ -3,6 +3,7 @@ import { readFileSync } from "fs"
 import { useContext } from "react"
 import { Anchor } from "react-bootstrap"
 import { projectContext } from "renderer/App"
+import LegacyObjectUpdater from "renderer/utilities/LegacyObjectUpdater"
 
 export default function OpenProjectOption() {
 
@@ -13,7 +14,14 @@ export default function OpenProjectOption() {
       ipcRenderer.invoke("openProject")
       .then( (filePath) => {
         if(!filePath) return;
-        setProject(JSON.parse(readFileSync(filePath).toString()))
+        const project = JSON.parse(readFileSync(filePath).toString())
+        console.log("project: ", JSON.parse(readFileSync(filePath).toString()))
+        LegacyObjectUpdater(project)
+        console.log("project After Update: ", project)
+        
+        // LegacyObjectUpdater is async, in which it uses process.nextTick to process object edits,
+        // so we need to wait for it to finish before setting the project
+        setImmediate( () => setProject(project))
       })
     }
 
