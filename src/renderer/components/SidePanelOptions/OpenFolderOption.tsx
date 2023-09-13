@@ -2,7 +2,7 @@ import { ipcRenderer } from "electron"
 import { useContext } from "react"
 import { Anchor } from "react-bootstrap"
 import { projectContext } from "renderer/App"
-import { FolderToObject } from "renderer/utilities/FolderToObject"
+import FolderToObject from "renderer/utilities/FolderToObject"
 
 export default function OpenFolderOption() {
 
@@ -13,7 +13,7 @@ export default function OpenFolderOption() {
       ipcRenderer.invoke("openFolder")
       .then( (filePath) => {
         if(!filePath) return;
-        let project = FolderToObject(filePath, "normal", true)
+        let project = FolderToObject(filePath, "normal")
         console.log("project: ", project)
         setProject(project)
       })

@@ -66,16 +66,6 @@ export default function JsonElement( {object, parent} : {object: ProjectObject, 
       color: validName? unlinkedFile? "#e6e60d" :"rgb(230, 85, 13)" : "red"
     }
 
-    if(object.note && !Array.isArray(object.note)) {
-      object.note = [object.note]
-    }
-    if(object.source && !Array.isArray(object.source)) {
-      object.source = [object.source]
-    }
-    if(object.credits && !Array.isArray(object.credits)) {
-      object.credits = [object.credits]
-    }
-
     let childrenElements: JSX.Element | JSX.Element[] | null = JsonMapChildren(object);
 
     const expandObject = () => {
