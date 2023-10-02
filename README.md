@@ -17,7 +17,7 @@ It is a cross-platform desktop application, created with Electron, React & TypeS
 
 Uses Electron, React, TypeScript & Bootstrap.
 
-## Data Structure
+## Data Shape
 
 The courses' data consist of different types of building components:
 - Folders: An organizational container that contains Files, Notes & Credits.
