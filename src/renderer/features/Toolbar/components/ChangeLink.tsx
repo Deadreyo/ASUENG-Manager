@@ -1,43 +1,61 @@
-import React, { ChangeEvent } from "react";
-import { Button, Col, Form } from "react-bootstrap";
-import ValidationRules from "../../../app/ValidationRules";
-import { selectedObjectContext } from "../../../app/Workspace";
-import { JSONInteractionDropDownDiv } from "../shared-styling";
+import React, { ChangeEvent } from 'react';
+import { Button, Col, Form } from 'react-bootstrap';
+import ValidationRules from '../../../app/ValidationRules';
+import { selectedObjectContext } from '../../../app/Workspace';
+import { JSONInteractionDropDownDiv } from '../shared-styling';
 
 export default function ChangeLinkButton() {
   const [show, setShow] = React.useState(false);
   const { selected, setSelected } = React.useContext(selectedObjectContext);
 
-  let value = ""
+  let value = '';
   let disabled = false;
-  if(selected?.obj.link) {
+  if (selected?.obj.link) {
     value = selected.obj.link;
   }
-  if(selected?.obj.children) {
+  if (selected?.obj.children) {
     disabled = true;
-    if(show) setShow(false)
+    if (show) setShow(false);
   }
 
   const changeLink = (ev: ChangeEvent) => {
-    if(selected) {
-      let entered = (ev.target as HTMLInputElement).value.replace(ValidationRules.LinkRule, "");
+    if (selected) {
+      let entered = (ev.target as HTMLInputElement).value.replace(
+        ValidationRules.LinkRule,
+        ''
+      );
 
-      if(entered) selected.obj.link = entered;
+      if (entered) selected.obj.link = entered;
       else selected.obj.link = undefined;
 
-      setSelected({obj: selected.obj, parent: selected.parent})
+      setSelected({ obj: selected.obj, parent: selected.parent });
     }
-
-
-  }
+  };
 
   return (
     <Col xs={12} className="mb-2 d-grid">
-      <Button variant={ disabled? "secondary": "primary"} size="sm" onClick={() => setShow(!show)} disabled={disabled}>Change Link</Button>
+      <Button
+        variant={disabled ? 'secondary' : 'primary'}
+        size="sm"
+        onClick={() => setShow(!show)}
+        disabled={disabled}
+      >
+        Change Link
+      </Button>
 
-      <Form.Group style={{...JSONInteractionDropDownDiv, display: show? "initial" : "none"}}>
-        <Form.Control type="text" placeholder="Link" value={value} onChange={changeLink}/>
+      <Form.Group
+        style={{
+          ...JSONInteractionDropDownDiv,
+          display: show ? 'initial' : 'none',
+        }}
+      >
+        <Form.Control
+          type="text"
+          placeholder="Link"
+          value={value}
+          onChange={changeLink}
+        />
       </Form.Group>
     </Col>
-  )
+  );
 }

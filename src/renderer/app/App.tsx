@@ -9,16 +9,19 @@ import starterProject from '../utils/starterProject';
 import ProjectObject from 'renderer/types/ProjectObjectInterface';
 import TitlePanel from './TitlePanel';
 
-export const ProjectObjContext = createContext({ project: starterProject, setProject: (obj: ProjectObject) => {}})
+export const ProjectObjContext = createContext({
+  project: starterProject,
+  setProject: (obj: ProjectObject) => {},
+});
 
 export default function App() {
-  const [project, setProject] =  useState(starterProject)
+  const [project, setProject] = useState(starterProject);
 
   return (
     <ProjectObjContext.Provider value={{ project, setProject }}>
       <Container fluid className="mainContainer">
         <Row>
-          <Col xs={3} style={{"padding": "0"}}>
+          <Col xs={3} style={{ padding: '0' }}>
             <SidePanel />
           </Col>
           <Col xs={9}>
