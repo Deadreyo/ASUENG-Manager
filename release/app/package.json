@@ -1,6 +1,6 @@
 {
   "name": "asueng-manager",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "A cross-platform desktop application that converts local folders into json files in order to make data files for ASUENG Library website.",
   "main": "./dist/main/main.js",
   "author": {

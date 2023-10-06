@@ -14,7 +14,7 @@ import { autoUpdater } from 'electron-updater';
 import log from 'electron-log';
 import MenuBuilder from './menu';
 import { resolveHtmlPath } from './util';
-import ProjectObject from 'renderer/@types/ProjectObjectInterface';
+import ProjectObject from 'renderer/types/ProjectObjectInterface';
 import testFetch from './keys';
 
 export default class AppUpdater {
@@ -150,7 +150,7 @@ ipcMain.handle('openProject', () => {
   })
 
   if(files) return files[0]
-  else return null
+  else return undefined
 })
 
 ipcMain.handle('openFolder', () => {
