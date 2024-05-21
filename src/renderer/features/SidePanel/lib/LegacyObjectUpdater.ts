@@ -6,7 +6,7 @@ export default function LegacyObjectUpdater(project: ProjectObject): void {
   try {
     ObjectUpdating(project, null);
   } catch (e) {
-    console.log('FKKKKK: ', e);
+    console.error('error: ', e);
   }
 }
 
@@ -16,7 +16,7 @@ function ObjectUpdating(
 ): void {
   childrenArrayUpdating(obj);
   console.log(obj.name);
-  if (obj.name == 'Previous_Exams') console.log('IONNNNSIIIIIDE');
+  
   if (obj.children) {
     obj.children.forEach((child) => {
       ObjectUpdating(child, obj);

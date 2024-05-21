@@ -101,7 +101,7 @@
   "author": {
     "name": "Ahmed Atwa",
     "email": "ahmedatwa866@yahoo.com",
-    "url": "https://electron-react-boilerplate.js.org"
+    "url": "https://github.com/Deadreyo"
   },
   "license": "GPL-3.0-or-later",
   "bugs": {
@@ -118,7 +118,7 @@
     "hot",
     "reload"
   ],
-  "homepage": "https://github.com/electron-react-boilerplate/electron-react-boilerplate#readme",
+  "homepage": "https://github.com/Deadreyo/ASUENG-Manager",
   "jest": {
     "testURL": "http://localhost/",
     "testEnvironment": "jsdom",
@@ -230,9 +230,6 @@
   "devEngines": {
     "node": ">=14.x",
     "npm": ">=7.x"
-  },
-  "collective": {
-    "url": "https://opencollective.com/electron-react-boilerplate-594"
   },
   "browserslist": [],
   "prettier": {

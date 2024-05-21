@@ -10,7 +10,7 @@ export default function OpenFolderOption() {
   const CreateFromFolder = () => {
     ipcRenderer.invoke('openFolder').then((filePath) => {
       if (!filePath) return;
-      let project = FolderToObject(filePath, 'normal');
+      let project = FolderToObject(filePath);
       console.log('project: ', project);
       setProject(project);
     });
